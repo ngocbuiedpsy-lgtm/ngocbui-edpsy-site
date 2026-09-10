@@ -1,0 +1,747 @@
+/* ==========================================================================
+   Ngoc Bui, portfolio
+   You should not need to edit this file. The words live in content.js
+   ========================================================================== */
+
+:root {
+  --cream:      #FDF8F3;
+  --cream-warm: #F8F0E7;
+  --card:       #FFFDFA;
+  --ink:        #33303F;
+  --ink-soft:   #5F5A6B;
+  --ink-faint:  #6F6A79;   /* was #8C8796, failed WCAG AA at 3.30 */
+  --teal:       #2E8B72;
+  --teal-deep:  #1F6B57;
+  --teal-pale:  #DFF3EC;
+  --tangerine:  #E8794A;   /* decorative only: rules, dots, underlines */
+  --tangerine-text: #BA4818; /* small orange TEXT, passes AA on all three bands */
+  --teal-btn:   #237059;   /* button ground, white on it passes at 5.94 */
+  --tangerine-pale: #FCEBE1;
+  --line:       #E8DFD4;
+
+  --measure: 42rem;
+  --radius: 18px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, .display {
+  font-family: "Fredoka", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+p { margin: 0 0 1.05em; max-width: var(--measure); }
+a { color: var(--teal-deep); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--tangerine); }
+img { max-width: 100%; display: block; }
+
+.wrap { width: min(100% - 2.5rem, 68rem); margin-inline: auto; }
+
+/* ---------- skip link ---------- */
+.skip {
+  position: absolute; left: -9999px;
+  background: var(--teal); color: #fff; padding: .7rem 1.1rem; border-radius: 0 0 10px 0; z-index: 100;
+}
+.skip:focus { left: 0; top: 0; }
+
+/* ---------- header / nav ---------- */
+.site-head {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(253, 248, 243, .88);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s ease;
+}
+.site-head.scrolled { border-bottom-color: var(--line); }
+.site-head .wrap {
+  display: flex; align-items: center; gap: 1.5rem;
+  min-height: 60px; flex-wrap: wrap;
+}
+.brand {
+  font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 1.15rem;
+  color: var(--ink); text-decoration: none; letter-spacing: -.01em;
+  display: inline-flex; align-items: center; gap: .5rem;
+}
+.brand .bulb { width: 20px; height: 26px; flex: none; }
+nav { margin-left: auto; }
+nav ul { display: flex; gap: 1.35rem; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+nav a {
+  color: var(--ink-soft); text-decoration: none; font-size: .95rem; font-weight: 500;
+  padding: .3rem 0; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s;
+}
+nav a:hover, nav a.active { color: var(--teal-deep); border-bottom-color: var(--tangerine); }
+
+/* On phones the header stops sticking (it would eat the screen) and the
+   section links become one quiet, swipeable row. */
+@media (max-width: 720px) {
+  .site-head { position: static; border-bottom: 1px solid var(--line); }
+  .site-head .wrap {
+    width: 100%; padding-inline: 0;
+    flex-direction: column; align-items: stretch; gap: 0; min-height: 0;
+  }
+  .brand { padding: .85rem 1.25rem .6rem; }
+  nav { margin-left: 0; min-width: 0; max-width: 100%; }
+  nav ul {
+    max-width: 100%;
+    flex-wrap: nowrap; overflow-x: auto; gap: 1.1rem;
+    padding: 0 1.25rem .6rem; scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  nav ul::-webkit-scrollbar { display: none; }
+  nav li { flex: none; }
+  section { scroll-margin-top: 1rem; }
+}
+
+/* ---------- hero ---------- */
+.hero { padding: clamp(3rem, 8vw, 6rem) 0 clamp(2.5rem, 6vw, 4rem); }
+.hero-grid {
+  display: grid; gap: clamp(2rem, 5vw, 3.5rem);
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+@media (min-width: 800px) {
+  .hero-grid { grid-template-columns: 1.25fr .75fr; }
+}
+.hero h1 {
+  font-size: clamp(1.9rem, 4.4vw, 3.1rem);
+  letter-spacing: -0.015em;
+  line-height: 1.24;
+  margin-bottom: 1rem;
+  max-width: 18ch;
+}
+.hero h1 .l2 { color: var(--teal); display: block; }
+.hero .sub {
+  font-size: clamp(1.1rem, 2.2vw, 1.3rem); color: var(--ink-soft);
+  max-width: 30rem; margin: 0;
+}
+.hero .rule {
+  width: 92px; height: 8px; margin: 1.6rem 0 1.4rem;
+  color: var(--tangerine);
+}
+
+/* teardrop photo, echoes the old Lum site */
+.portrait { justify-self: center; width: min(300px, 78vw); }
+.portrait figure { margin: 0; position: relative; }
+.portrait svg { width: 100%; height: auto; display: block; }
+.portrait figcaption {
+  text-align: center; font-size: .9rem; color: var(--ink-faint); margin-top: .85rem;
+}
+
+/* ---------- sections ---------- */
+section { padding: clamp(3rem, 7vw, 5rem) 0; scroll-margin-top: 72px; }
+
+.section-head { margin-bottom: 2.25rem; }
+.section-head h2 { font-size: clamp(1.85rem, 4.2vw, 2.7rem); margin-bottom: .8rem; }
+.section-head .intro { color: var(--ink-soft); max-width: 38rem; margin: 0; }
+
+.eyebrow {
+  font-size: .82rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--tangerine-text); margin: 0 0 .55rem;
+}
+
+/* ---------- generic card ---------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.3rem, 3vw, 1.85rem);
+}
+.card h3 { font-size: 1.22rem; margin-bottom: .55rem; }
+.card p:last-child { margin-bottom: 0; }
+
+.grid-2 { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
+@media (min-width: 720px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- feature block (workshop) ---------- */
+.feature {
+  background: var(--teal-pale);
+  border-radius: var(--radius);
+  padding: clamp(1.4rem, 3.5vw, 2.25rem);
+  margin-bottom: 2.5rem;
+  display: grid; gap: clamp(1.25rem, 3vw, 2rem);
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+@media (min-width: 760px) { .feature { grid-template-columns: 1.45fr .55fr; } }
+.feature h3 { font-size: clamp(1.15rem, 2.4vw, 1.4rem); margin-bottom: .7rem; }
+.feature p { color: var(--ink-soft); }
+.feature img {
+  border-radius: 12px; box-shadow: 0 6px 22px rgba(51,48,63,.13);
+  max-height: 380px; width: auto; margin-inline: auto;
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--teal-btn); color: #fff; text-decoration: none;
+  padding: .7rem 1.25rem; border-radius: 999px;
+  font-size: .95rem; font-weight: 500;
+  transition: background .2s, transform .2s;
+}
+.btn:hover { background: var(--teal-deep); color: #fff; transform: translateY(-1px); }
+.btn.ghost {
+  background: transparent; color: var(--teal-deep);
+  border: 1.5px solid var(--teal);
+}
+.btn.ghost:hover { background: var(--teal); color: #fff; }
+.btn svg { width: 15px; height: 15px; flex: none; }
+
+/* ---------- lists ---------- */
+.plain { list-style: none; padding: 0; margin: 0; }
+.plain li { padding-left: 1.35rem; position: relative; margin-bottom: .6rem; color: var(--ink-soft); max-width: var(--measure); }
+.plain li::before {
+  content: ""; position: absolute; left: 0; top: .68em;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--tangerine);
+}
+
+/* ---------- talks ---------- */
+.talk {
+  display: grid; gap: clamp(1.1rem, 3vw, 2rem);
+  grid-template-columns: 1fr;
+  padding: 1.9rem 0;
+  border-top: 1px solid var(--line);
+}
+.talk:first-of-type { border-top: none; padding-top: 0; }
+@media (min-width: 760px) {
+  .talk.has-img { grid-template-columns: 1fr 1fr; align-items: center; }
+}
+.talk .date {
+  font-size: .85rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--tangerine-text); margin-bottom: .45rem;
+}
+.talk h3 { font-size: 1.3rem; margin-bottom: .45rem; }
+.talk .where { font-size: .98rem; color: var(--ink-faint); margin-bottom: .85rem; max-width: var(--measure); }
+.talk p { color: var(--ink-soft); }
+.talk img { border-radius: 12px; box-shadow: 0 5px 18px rgba(51,48,63,.12); }
+.talk .btn { margin-top: 1.1rem; }
+
+/* ---------- testimonials ---------- */
+.quotes { display: grid; gap: 1.1rem; grid-template-columns: 1fr; margin-top: 1.4rem; }
+@media (min-width: 780px) { .quotes { grid-template-columns: repeat(3, 1fr); } }
+.quote {
+  background: var(--cream-warm); border-radius: var(--radius);
+  padding: 1.4rem; border-left: 3px solid var(--tangerine);
+}
+.quote blockquote { margin: 0 0 .8rem; font-size: 1.08rem; color: var(--ink); }
+.quote cite { font-style: normal; font-size: .9rem; color: var(--ink-faint); line-height: 1.45; display: block; }
+
+/* ---------- in-development badge ---------- */
+.badge {
+  display: inline-block; background: var(--tangerine-pale); color: #A8502A;
+  font-size: .72rem; font-weight: 600; letter-spacing: .04em;
+  padding: .25rem .65rem; border-radius: 999px; margin-bottom: .7rem;
+}
+
+/* ---------- research ---------- */
+.paper-head {
+  background: var(--cream-warm); border-radius: var(--radius);
+  padding: clamp(1.3rem, 3vw, 1.9rem); margin-bottom: 2rem;
+}
+.paper-head h3 { font-size: 1.32rem; margin-bottom: .6rem; max-width: 40rem; }
+.paper-head .authors { color: var(--ink-soft); font-size: 1.02rem; margin-bottom: .2rem; max-width: none; }
+.paper-head .authors b { color: var(--ink); font-weight: 600; }
+.paper-head .journal { color: var(--ink-faint); font-size: .96rem; margin-bottom: 1.2rem; }
+.paper-actions { display: flex; gap: .65rem; flex-wrap: wrap; }
+.paper-summary { color: var(--ink-soft); max-width: 44rem; margin-bottom: 1.4rem; }
+.paper-head .funding { margin-top: 1.3rem; }
+#otherList .card { max-width: 34rem; }
+.note-line { color: var(--ink-soft); margin-top: 1.6rem; max-width: 40rem; }
+
+.findings { display: grid; gap: 1rem; grid-template-columns: 1fr; margin: 1.5rem 0 2rem; }
+@media (min-width: 780px) { .findings { grid-template-columns: repeat(3, 1fr); } }
+.finding { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.4rem; }
+.finding .n {
+  font-family: "Fredoka", sans-serif; font-size: 1.6rem; color: var(--teal-pale);
+  line-height: 1; margin-bottom: .4rem; font-weight: 600;
+}
+.finding h4 { font-family: "Fredoka", sans-serif; font-size: 1rem; font-weight: 600; margin: 0 0 .45rem; }
+.finding p { font-size: .93rem; color: var(--ink-soft); margin: 0; }
+
+.sowhat {
+  background: var(--teal-pale); border-radius: var(--radius);
+  padding: clamp(1.3rem, 3vw, 1.9rem);
+}
+.sowhat h4 { font-family: "Fredoka", sans-serif; font-size: 1.05rem; margin: 0 0 .6rem; }
+.sowhat p { color: var(--ink-soft); max-width: 44rem; margin: 0; }
+.funding { font-size: .88rem; color: var(--ink-faint); margin-top: 1.4rem; max-width: 44rem; }
+
+/* ---------- app ---------- */
+.app-mode {
+  display: grid; gap: clamp(1.2rem, 3vw, 2.4rem);
+  grid-template-columns: 1fr; align-items: center;
+  padding: 1.9rem 0; border-top: 1px solid var(--line);
+}
+.app-mode:first-of-type { border-top: none; }
+@media (min-width: 720px) {
+  .app-mode { grid-template-columns: 210px 1fr; }
+  .app-mode:nth-child(even) { grid-template-columns: 1fr 210px; }
+  .app-mode:nth-child(even) .phone { order: 2; }
+}
+.app-mode h3 { font-size: 1.25rem; margin-bottom: .55rem; }
+.app-mode p { color: var(--ink-soft); margin: 0; }
+
+.phone {
+  background: #2A2733; border-radius: 26px; padding: 7px;
+  box-shadow: 0 10px 30px rgba(51,48,63,.2);
+  max-width: 210px; justify-self: center; width: 100%;
+}
+.phone img { border-radius: 20px; }
+
+.app-gallery { display: grid; gap: 1.25rem; grid-template-columns: repeat(3, 1fr); margin-top: 2rem; }
+.app-gallery .phone { max-width: 100%; }
+
+.learned {
+  background: var(--cream-warm); border-radius: var(--radius);
+  padding: clamp(1.3rem, 3vw, 1.9rem); margin-top: 2.2rem;
+}
+.learned h3 { font-size: 1.15rem; margin-bottom: .6rem; }
+.learned p { color: var(--ink-soft); max-width: 44rem; margin: 0; }
+.app-status { font-size: .9rem; color: var(--ink-faint); margin-top: 1.3rem; }
+
+/* ---------- credentials ---------- */
+.cred-grid { display: grid; gap: 1.6rem; grid-template-columns: 1fr; }
+@media (min-width: 760px) { .cred-grid { grid-template-columns: 1fr 1fr; } }
+.cred h3 {
+  font-size: .85rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--tangerine-text); margin-bottom: .8rem;
+}
+.cred .safeguard { grid-column: 1 / -1; }
+
+/* ---------- contact ---------- */
+.contact-card {
+  background: var(--teal-pale); border-radius: var(--radius);
+  padding: clamp(1.7rem, 4vw, 3rem);
+  max-width: 46rem;
+}
+.contact-card p { max-width: 30rem; }
+.contact-card h2 { font-size: clamp(1.7rem, 3.8vw, 2.3rem); margin-bottom: .8rem; }
+.contact-card p { color: var(--ink-soft); }
+.email-link {
+  display: inline-block; font-family: "Fredoka", sans-serif;
+  font-size: clamp(1.05rem, 2.6vw, 1.4rem); color: var(--teal-deep);
+  text-decoration: none; border-bottom: 2px solid var(--tangerine);
+  padding-bottom: 2px; margin: .5rem 0 1.4rem; word-break: break-word;
+}
+.email-link:hover { color: var(--tangerine); }
+.contact-links { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 1rem; }
+.availability { font-size: 1rem; color: var(--ink-faint); margin-top: 1.5rem; max-width: 32rem; }
+
+/* ---------- footer ---------- */
+footer {
+  padding: 2.5rem 0 3.5rem; border-top: 1px solid var(--line);
+  font-size: .92rem; color: var(--ink-faint);
+}
+
+/* ---------- gentle reveal ---------- */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+/* ---------- print ---------- */
+@media print {
+  .site-head, .reveal { position: static; opacity: 1; transform: none; }
+  body { background: #fff; }
+}
+
+main:focus { outline: none; }
+
+
+/* ==========================================================================
+   SECTION BANDS
+   Alternating background colours give the page rhythm, so each section reads
+   as a deliberate block rather than one long scroll. Colour does the
+   separating, so the hairline rules between sections are gone.
+   ========================================================================== */
+
+#hello,
+#talks,
+#research,
+#credentials,
+#contact      { background: var(--cream); }
+
+#teaching,
+#app          { background: var(--cream-warm); }
+
+#materials    { background: var(--teal-pale); }
+
+/* a little more air, so the colour blocks feel intentional */
+section { padding: clamp(3.5rem, 8vw, 6rem) 0; }
+
+/* two cream sections in a row still need a line between them */
+#contact { border-top: 1px solid var(--line); }
+
+/* ---- keep nested tints legible on tinted bands ---------------------- */
+
+/* the quote cards are warm-cream, which would vanish on the warm band */
+#teaching .quote {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--tangerine);
+}
+
+/* same for the "what it taught me" panel inside the warm app band */
+#app .learned {
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+
+/* on the mint band, cards get a slightly deeper edge so they lift */
+#materials .card,
+#research .card { border-color: #C9E6DC; }
+
+/* phone frames read better with a touch more shadow on a tinted ground */
+#app .phone { box-shadow: 0 12px 34px rgba(51,48,63,.22); }
+
+/* ---- section headings ------------------------------------------------ */
+
+/* a small tangerine tick above each heading, echoing the hero underline */
+.section-head h2::before {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--tangerine);
+  margin-bottom: 1rem;
+}
+
+/* the contact card sits on cream, so give it presence */
+.contact-card { box-shadow: 0 8px 30px rgba(46,139,114,.10); }
+
+
+/* ==========================================================================
+   FULL-BLEED BANDS AND WIDER LAYOUT
+   Added to fix two things: sections that left 350 to 500px of dead space on
+   the right, and a page with nothing that ran edge to edge.
+   ========================================================================== */
+
+/* ---- illustrated bands, edge to edge ---------------------------------- */
+.band {
+  width: 100%;
+  display: block;
+  line-height: 0;
+}
+.band img { width: 100%; height: auto; display: block; }
+
+.band-hero img { min-height: 190px; object-fit: cover; object-position: center bottom; }
+.band-divider  { background: var(--cream); }
+.band-divider img { height: 96px; object-fit: cover; }
+
+/* a divider sitting between two bands takes the colour of the one above */
+#teaching + .band-divider { background: var(--cream-warm); }
+#materials + .band-divider { background: var(--teal-pale); }
+
+/* ---- section heads run across the full width -------------------------- */
+
+
+/* ---- Hello reads as two columns instead of one narrow ribbon ---------- */
+
+
+/* ---- everything else simply gets more room --------------------------- */
+
+
+
+
+
+
+
+/* talk entries: give the text more of the column it sits in */
+
+@media (min-width: 760px) {
+  .talk.has-img { grid-template-columns: 1.15fr .85fr; }
+}
+
+/* contact card fills more of its band */
+
+
+.email-link { overflow-wrap: normal; word-break: keep-all; }
+
+/* app modes: wider text column */
+
+
+/* credentials: three columns of qualifications rather than two half-empty */
+@media (min-width: 900px) {
+  .cred-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem 4rem; }
+  .cred .plain li { max-width: none; }
+}
+
+/* ---- visible focus for keyboard users -------------------------------- */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--teal-btn);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+main:focus { outline: none; }
+
+
+/* ---- grid refinements ------------------------------------------------- */
+@media (min-width: 900px) {
+  #teachList { grid-template-columns: repeat(3, 1fr); }
+  #teachList .card p { max-width: none; }
+}
+
+/* a single testimonial should not sit in a narrow third of the page */
+.quotes { grid-template-columns: 1fr; }
+@media (min-width: 780px) {
+  .quotes { grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); }
+  .quotes:has(.quote:only-child) { grid-template-columns: minmax(0, 34rem); }
+}
+.quote blockquote, .quote cite { max-width: none; }
+
+/* ---- hero band sits tight against the hero --------------------------- */
+.hero { padding-bottom: clamp(1.5rem, 3vw, 2.2rem); }
+.band-hero { margin-top: clamp(1rem, 2.5vw, 2rem); }
+#hello { padding-top: clamp(2.5rem, 5vw, 4rem); }
+
+/* ==========================================================================
+   EDIT MODE
+   Only ever visible when the address ends with ?edit
+   ========================================================================== */
+#editBar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 999;
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  padding: .7rem clamp(.9rem, 3vw, 1.6rem);
+  background: #33303F; color: #FDF8F3;
+  font-family: "DM Sans", system-ui, sans-serif; font-size: .95rem;
+  box-shadow: 0 -6px 24px rgba(51,48,63,.28);
+}
+#editBar .eb-left { display: flex; align-items: baseline; gap: .7rem; }
+#editBar strong { font-family: "Fredoka", sans-serif; letter-spacing: .01em; }
+#ebCount { color: #C9C4D2; font-size: .9rem; }
+#editBar .eb-right { margin-left: auto; display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+#editBar button, #editBar a {
+  font: inherit; border-radius: 999px; padding: .5rem 1rem; cursor: pointer;
+  border: 1.5px solid #6F6A79; background: transparent; color: #FDF8F3;
+  text-decoration: none; line-height: 1.2;
+}
+#editBar .eb-save {
+  background: #4CBFA0; border-color: #4CBFA0; color: #14312A; font-weight: 600;
+}
+#editBar .eb-save:disabled { opacity: .45; cursor: not-allowed; }
+#editBar button:hover:not(:disabled), #editBar a:hover { border-color: #FDF8F3; }
+
+body:has(#editBar) { padding-bottom: 5.5rem; }
+
+.editable { outline: 1px dashed transparent; outline-offset: 4px; border-radius: 3px; transition: outline-color .15s, background .15s; }
+.editable:hover { outline-color: #A9A3B5; cursor: text; }
+.editable:focus { outline: 2px solid #4CBFA0; outline-offset: 4px; background: rgba(76,191,160,.09); }
+.editable.changed { background: rgba(76,191,160,.16); outline-color: #2E8B72; }
+
+
+/* ==========================================================================
+   LAYOUT SYSTEM
+   Five block types, each balanced by design, so imbalance cannot creep back
+   in when the length of your writing changes.
+
+   1. PROSE   one column at one measure, used for all running text
+   2. MEDIA   full-bleed illustration or photograph, this is the "overflow"
+   3. CARDS   a grid whose cards size to their own content
+   4. PANEL   a tinted box with the same inner measure as prose
+   5. SPLIT   two columns, used only where both sides are genuinely similar
+
+   The rule that keeps it stable: running text is never stretched to fill the
+   page. Width comes from images. Whitespace is consistent, so it reads as
+   deliberate rather than accidental.
+   ========================================================================== */
+
+:root { --prose: 38rem; }
+
+/* ---- 1. PROSE ---------------------------------------------------------- */
+.section-head { display: block; margin-bottom: clamp(2rem, 4vw, 2.75rem); }
+.section-head h2 { margin-bottom: .9rem; }
+.section-head .intro,
+#helloBody p,
+.talk p, .talk .where,
+.note-line, .funding,
+.learned p, .app-mode p,
+.paper-summary, #paperSummary,
+.contact-card p {
+  max-width: var(--prose);
+}
+#helloBody { columns: auto; }
+
+/* ---- 2. MEDIA ---------------------------------------------------------- */
+/* .band rules already defined above stay as they are */
+
+/* ---- 3. CARDS ---------------------------------------------------------- */
+/* Cards must never be stretched to a shared height. A short card beside a
+   long one should simply be short. */
+.grid-2, .app-gallery, .cred-grid, .quotes, #teachList, #matList, #otherList {
+  align-items: start;
+}
+.card { height: auto; }
+.card p { max-width: none; }
+
+/* ---- 4. PANEL ---------------------------------------------------------- */
+.paper-head, .learned, .contact-card { max-width: 56rem; }
+.paper-head h3 { max-width: var(--prose); }
+
+/* ---- 5. SPLIT ---------------------------------------------------------- */
+/* Only the talk entries use a split, and only because an image genuinely
+   balances the text beside it. */
+@media (min-width: 820px) {
+  .talk.has-img { grid-template-columns: 1fr minmax(0, 22rem); align-items: center; }
+}
+
+/* ---- rhythm ------------------------------------------------------------ */
+section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
+.hero h1 { max-width: 20ch; }
+
+/* the app subtitle belongs under the title, not stranded in a second column */
+#appSubtitle { max-width: var(--prose); margin-bottom: 1.4rem; }
+
+/* extra sections added from content.js */
+.band-cream { background: var(--cream); }
+.band-warm  { background: var(--cream-warm); }
+.band-mint  { background: var(--teal-pale); }
+.extra-img  { border-radius: 12px; margin: 1.6rem 0; box-shadow: 0 6px 22px rgba(51,48,63,.13); }
+#extraSections .btn { margin-top: 1.2rem; }
+
+
+/* ==========================================================================
+   v13  TYPOGRAPHY AND EDGES
+
+   Five changes, all presentation only, no words touched.
+   1. Serif headings (Fraunces) against the sans body, so a heading reads as
+      a heading instead of as slightly larger body text.
+   2. A much larger H1, and a clearer step down to H2.
+   3. Tighter letter spacing on both, which makes text look set rather than
+      typed.
+   4. Curved section edges in place of straight colour joins.
+   5. One full width band, the contact section, in deep teal.
+
+   The pasted-on illustration strips are gone. They sat on top of the page
+   rather than being part of it.
+   ========================================================================== */
+
+/* ---- 1 and 3. serif headings ------------------------------------------- */
+h1, h2, h3, .display {
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-optical-sizing: auto;
+}
+body { letter-spacing: -0.012em; }
+
+/* Fredoka stays for the small accent pieces, so the branding survives */
+.brand, .eyebrow, .cred h3, .email-link,
+.finding h4, .sowhat h4, #appSubtitle { font-family: "Fredoka", sans-serif; }
+.eyebrow, .cred h3 { letter-spacing: .1em; }
+
+/* ---- 2. the type scale -------------------------------------------------- */
+.hero h1 {
+  font-size: clamp(2.4rem, 6.6vw, 4.1rem);
+  line-height: 1.06;
+  margin-bottom: 0;
+  max-width: 26ch;
+}
+.hero .rule { margin: 2rem 0 1.6rem; width: 108px; }
+.hero .sub {
+  font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+  line-height: 1.5;
+  max-width: 34rem;
+}
+.section-head h2 { font-size: clamp(1.9rem, 4.2vw, 2.55rem); line-height: 1.14; }
+.contact-card h2 { font-size: clamp(1.9rem, 4.2vw, 2.55rem); line-height: 1.14; }
+.card h3, .talk h3, .paper-head h3, .app-mode h3 { font-size: 1.3rem; line-height: 1.25; }
+.feature h3 { font-size: clamp(1.25rem, 2.6vw, 1.55rem); }
+
+/* ---- the old illustration strips are gone ------------------------------ */
+.band, .band-hero, .band-divider { display: none !important; }
+.hero { padding-bottom: clamp(2.5rem, 6vw, 4rem); }
+
+/* ---- 4. curved section edges ------------------------------------------- */
+:root {
+  --wave-h: 88px;
+  --wave-a: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0 78 C 200 16 400 10 640 42 C 880 74 1120 80 1440 22 L1440 80 L0 80 Z' fill='%23000'/></svg>");
+  --wave-b: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0 26 C 260 80 520 76 760 46 C 1000 16 1220 12 1440 70 L1440 80 L0 80 Z' fill='%23000'/></svg>");
+}
+
+section { position: relative; }
+
+/* the curve is the section's own colour, reaching up over the one above */
+.wave-top::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  top: calc(1px - var(--wave-h));
+  height: var(--wave-h);
+  background: var(--band, var(--cream));
+  -webkit-mask: var(--wave-a) bottom / 100% 100% no-repeat;
+          mask: var(--wave-a) bottom / 100% 100% no-repeat;
+  pointer-events: none;
+}
+.wave-top.wave-alt::before {
+  -webkit-mask-image: var(--wave-b);
+          mask-image: var(--wave-b);
+}
+
+/* the reveal animation must not clip or shift the curve */
+.reveal.wave-top { transform: none; }
+.reveal.wave-top.in { transform: none; }
+
+@media (max-width: 640px) { :root { --wave-h: 44px; } }
+
+/* ---- band colours, now driven by one variable each --------------------- */
+#hello       { --band: var(--cream); }
+#teaching    { --band: var(--cream-warm); }
+#talks       { --band: var(--cream); }
+#materials   { --band: var(--teal-pale); }
+#research    { --band: var(--teal-pale); }
+#app         { --band: var(--cream-warm); }
+#credentials { --band: var(--cream); }
+#contact     { --band: #1B5C4A; }
+
+#hello, #teaching, #talks, #materials,
+#research, #app, #credentials, #contact { background: var(--band); }
+
+/* ---- 5. the contact section runs full width in deep teal --------------- */
+#contact { border-top: none; color: #EEF7F3; }
+#contact .contact-card {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  max-width: 44rem;
+}
+#contact h2 { color: #FFFFFF; }
+#contact p, #contact .contact-card p { color: #D3E9E0; }
+#contact .email-link {
+  color: #FFFFFF;
+  border-bottom-color: var(--tangerine);
+}
+#contact .email-link:hover { color: #FFCDB4; }
+#contact .contact-links a { color: #FFFFFF; }
+#contact .contact-links a:hover { color: #FFCDB4; }
+#contact .availability { color: #BEDCD0; }
+#contact a:focus-visible { outline-color: #FFFFFF; }
+
+/* the footer sits directly under the teal band, so it needs no rule */
+footer { border-top: none; padding-top: 3rem; }
+
+/* ---- "Also" reads as two cards side by side, not a single narrow column - */
+#otherList { display: grid; gap: 1.1rem; align-items: start; }
+@media (min-width: 720px) { #otherList { grid-template-columns: 1fr 1fr; } }
+#otherList .card { max-width: none; }
