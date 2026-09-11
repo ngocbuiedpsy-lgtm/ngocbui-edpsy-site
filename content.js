@@ -184,8 +184,7 @@ const CONTENT = {
     ],
     learnedTitle: "What it taught me",
     learned:
-      "The app is one expression of values I hold across my work: getting unstuck is rarely about willpower or discipline. It is about designing a system that carries some of the weight for you, so the first step becomes possible.
-       My favourite thing in it is a button: \"I stayed. That counts too.\"",
+      "The app is one expression of values I hold across my work: getting unstuck is rarely about willpower or discipline. It is about designing a system that carries some of the weight for you, so the first step becomes possible. My favourite thing in it is a button: \"I stayed. That counts too.\"",
     status: "In development since June 2026, on Android. Not yet published, and I am aiming for the end of the year.",
   },
 
