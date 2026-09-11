@@ -159,19 +159,19 @@ const CONTENT = {
     modes: [
       {
         name: "I'm Frozen",
-        body: "For when nothing is moving. You choose how much of a push you want, gentle, medium or active, and get a small physical task: ten slow taps, humming for five seconds, photographing something green. It uses the phone's sensors, so the body does something before the mind is asked to.",
+        body: "For when nothing is moving. You choose how much of a push you want, gentle, medium or active, and get a small physical task: ten slow taps, humming for five seconds, photographing something green.",
         image: "images/app-unstuck.jpg",
         alt: "The intensity chooser: gentle, medium, active",
       },
       {
         name: "I Have a Task",
-        body: "You type what you need to do. The app finds it in a library of thirty everyday tasks and offers three ways in: the tiniest possible step, the whole thing in order, or a map of entry points you can start from anywhere. Different people are stuck in different places.",
+        body: "You type what you need to do. The app finds it in a library of thirty everyday tasks and offers three ways in: the tiniest possible step, the whole thing in order, or a map of entry points you can start from anywhere. A non-linear approach to tasks.",
         image: "images/app-approaches.jpg",
         alt: "Three approaches: tiniest step, from the beginning, start anywhere",
       },
       {
         name: "Sit with Luma",
-        body: "Body doubling with a turtle. You set an intention and a timer, choose a background sound, and Luma waits with you, checking in a couple of times but never demanding an answer. At the end you can say it went well, or say you just stayed. Both are offered as real answers.",
+        body: "Body doubling with a turtle mascot. You set an intention and a timer, choose a background sound, and Luma waits with you, checking in a couple of times but never demanding a perfect answer. At the end you can say it went well, or say you just stayed. Both are acknowledged as valid answers.",
         image: "images/app-timer.jpg",
         alt: "The Sit with Luma timer with a gentle check-in",
       },
