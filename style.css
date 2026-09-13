@@ -745,3 +745,141 @@ footer { border-top: none; padding-top: 3rem; }
 #otherList { display: grid; gap: 1.1rem; align-items: start; }
 @media (min-width: 720px) { #otherList { grid-template-columns: 1fr 1fr; } }
 #otherList .card { max-width: none; }
+
+/* ==========================================================================
+   v15  WHAT STUDENTS AND PARENTS SAY
+
+   Each quote now carries a face, in the same teardrop frame as the portrait
+   in the hero, so the two read as one design rather than two.
+   ========================================================================== */
+.quote {
+  margin: 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--tangerine);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.4rem 1.4rem;
+}
+.quote .face {
+  width: 118px; height: auto; display: block;
+  margin: -.4rem 0 .9rem -.35rem;
+}
+.quote blockquote {
+  margin: 0 0 .9rem;
+  font-size: 1.06rem; line-height: 1.55; color: var(--ink);
+}
+.quote figcaption {
+  font-size: .9rem; line-height: 1.45; color: var(--ink-faint);
+}
+#testNote {
+  color: var(--ink-faint); font-size: .92rem;
+  margin: -.2rem 0 1.4rem; max-width: var(--prose);
+}
+/* three across on a wide screen, two on a tablet, one on a phone */
+@media (min-width: 640px) { .quotes { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .quotes { grid-template-columns: repeat(3, 1fr); } }
+
+/* ==========================================================================
+   v17  THE VOICES CAROUSEL
+
+   Four at a time on a wide screen, the rest a swipe away, so six voices read
+   as one row rather than two blocks. Picture on top, words underneath,
+   centred, which is how these looked on the Lum site they came from.
+   No card around them: the quotes are light enough to sit straight on the
+   band, and boxing each one is what made a single quote eat the screen.
+   ========================================================================== */
+.carousel { position: relative; }
+
+.quotes {
+  display: flex;
+  grid-template-columns: none;      /* the old grid rules no longer apply */
+  gap: clamp(1.2rem, 2.6vw, 2.2rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  margin-top: 1.6rem;
+  padding-bottom: .3rem;
+}
+.quotes::-webkit-scrollbar { display: none; }
+.quotes:focus-visible { outline: 3px solid var(--teal-btn); outline-offset: 6px; border-radius: 12px; }
+@media (prefers-reduced-motion: reduce) { .quotes { scroll-behavior: auto; } }
+
+.quote {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+@media (min-width: 560px)  { .quote { flex-basis: calc((100% - 1 * clamp(1.2rem, 2.6vw, 2.2rem)) / 2); } }
+@media (min-width: 840px)  { .quote { flex-basis: calc((100% - 2 * clamp(1.2rem, 2.6vw, 2.2rem)) / 3); } }
+@media (min-width: 1060px) { .quote { flex-basis: calc((100% - 3 * clamp(1.2rem, 2.6vw, 2.2rem)) / 4); } }
+
+.quote .face {
+  float: none;
+  shape-outside: none !important;
+  width: clamp(150px, 17vw, 210px);
+  height: auto;
+  margin: 0 0 1.1rem;
+}
+
+.quote blockquote {
+  margin: 0 0 1rem;
+  font-size: 1.04rem;
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: none;
+}
+.quote figcaption {
+  font-size: .92rem;
+  line-height: 1.45;
+  color: var(--ink-faint);
+  margin-top: auto;
+}
+
+/* ---- arrows and dots ---------------------------------------------------- */
+.carousel-nav {
+  display: flex; align-items: center; gap: .9rem;
+  margin-top: 1.6rem;
+}
+.car-arrow {
+  width: 42px; height: 42px; flex: none;
+  display: grid; place-items: center;
+  border: 1.5px solid var(--teal); border-radius: 999px;
+  background: transparent; color: var(--teal-deep);
+  cursor: pointer; transition: background .2s, color .2s, opacity .2s;
+}
+.car-arrow svg { width: 17px; height: 17px; }
+.car-arrow:last-child svg { transform: rotate(180deg); }
+.car-arrow:hover:not(:disabled) { background: var(--teal); color: #fff; }
+.car-arrow:disabled { opacity: .3; cursor: default; }
+
+.car-dots { display: flex; gap: .5rem; }
+.car-dot {
+  width: 9px; height: 9px; padding: 0;
+  border: none; border-radius: 999px;
+  background: #CDBFAE; cursor: pointer;
+  transition: background .2s, width .2s;
+}
+.car-dot.on { background: var(--teal); width: 26px; }
+
+/* the dots count pages, not slides, so hide the ones past the last page */
+.car-dot[hidden] { display: none; }
+
+/* The bands block styles quotes as cards with "#teaching .quote", which is
+   more specific than a plain ".quote", so it has to be undone by name. */
+#teaching .quote {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+/* equal heights, so every name sits on the same line across the row */
+.quotes { align-items: stretch; }

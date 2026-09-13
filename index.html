@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Fredoka:wght@400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=14">
+<link rel="stylesheet" href="style.css?v=16">
 </head>
 <body>
 
@@ -107,8 +107,14 @@
       <div style="margin-top:2.6rem">
         <h3 id="lumTitle" style="font-size:1.4rem;margin-bottom:.7rem"></h3>
         <p id="lumBody" style="color:var(--ink-soft)"></p>
-        <p class="eyebrow" id="testTitle" style="margin-top:1.6rem"></p>
-        <div class="quotes" id="quotes"></div>
+        <p class="eyebrow" id="testTitle" style="margin-top:2.4rem"></p>
+        <p class="note-line" id="testNote"></p>
+        <div class="carousel" id="quotesCarousel">
+          <div class="quotes" id="quotes"
+               role="group" aria-roledescription="carousel"
+               aria-label="What students and parents said" tabindex="0"></div>
+          <div class="carousel-nav" id="quotesNav" hidden></div>
+        </div>
       </div>
     </div>
   </section>
@@ -220,8 +226,8 @@
   <div class="wrap"><span id="footerText"></span></div>
 </footer>
 
-<script src="content.js?v=14"></script>
-<script src="main.js?v=14"></script>
+<script src="content.js?v=16"></script>
+<script src="main.js?v=16"></script>
 
 <!-- Edit mode: loads only when the address ends with ?edit -->
 <script>

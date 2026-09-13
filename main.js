@@ -64,6 +64,105 @@
     '<path d="M8 1.5v9m0 0L4.5 7M8 10.5 11.5 7M2 13h12" stroke="currentColor" ' +
     'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
+  /* ---------- carousel ----------------------------------------------------
+     One slide at a time, scrolled rather than animated, so it still works if
+     the JavaScript never runs: the track is simply a scrollable row. The
+     arrows and dots are built here and only appear once they can do something.
+     ----------------------------------------------------------------------- */
+  function carousel(trackId, navId) {
+    var track = $(trackId), nav = $(navId);
+    if (!track || !nav) return;
+    var slides = Array.prototype.slice.call(track.children);
+    if (slides.length < 2) return;
+
+    var ARROW =
+      '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true">' +
+      '<path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" ' +
+      'stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+    nav.innerHTML =
+      '<button type="button" class="car-arrow" data-dir="-1" aria-label="Previous">' +
+        ARROW + "</button>" +
+      '<div class="car-dots" role="tablist" aria-label="Choose a quote">' +
+        slides.map(function (s, i) {
+          return '<button type="button" class="car-dot" role="tab" data-go="' + i +
+                 '" aria-label="Quote ' + (i + 1) + '"></button>';
+        }).join("") +
+      "</div>" +
+      '<button type="button" class="car-arrow" data-dir="1" aria-label="Next">' +
+        ARROW + "</button>";
+    nav.hidden = false;
+
+    var dots = Array.prototype.slice.call(nav.querySelectorAll(".car-dot"));
+    var current = 0;
+
+    // how many slides are on screen at once, which changes with the window
+    function perView() {
+      var w = slides[0].getBoundingClientRect().width;
+      if (!w) return 1;
+      return Math.max(1, Math.round(track.clientWidth / w));
+    }
+    function lastStart() { return Math.max(0, slides.length - perView()); }
+
+    function go(i) {
+      current = Math.max(0, Math.min(lastStart(), i));
+      track.scrollTo({ left: slides[current].offsetLeft - track.offsetLeft,
+                       behavior: "smooth" });
+      mark();
+    }
+
+    function mark() {
+      var last = lastStart();
+      dots.forEach(function (d, i) {
+        d.hidden = i > last;
+        d.classList.toggle("on", i === current);
+        d.setAttribute("aria-selected", i === current ? "true" : "false");
+      });
+      nav.querySelector('[data-dir="-1"]').disabled = current === 0;
+      nav.querySelector('[data-dir="1"]').disabled = current >= last;
+      // with everything already on screen there is nothing to page through
+      nav.hidden = last === 0;
+    }
+
+    nav.addEventListener("click", function (e) {
+      var b = e.target.closest ? e.target.closest("button") : null;
+      if (!b) return;
+      if (b.hasAttribute("data-dir")) go(current + Number(b.getAttribute("data-dir")) * perView());
+      else if (b.hasAttribute("data-go")) go(Number(b.getAttribute("data-go")));
+    });
+
+    // keep the dots honest when someone swipes or scrolls the track directly
+    var t;
+    track.addEventListener("scroll", function () {
+      clearTimeout(t);
+      t = setTimeout(function () {
+        // which slide is sitting at the left edge, since that is the position
+        // the arrows and dots describe
+        var left = track.scrollLeft;
+        var best = 0, bestD = Infinity;
+        slides.forEach(function (s, i) {
+          var d = Math.abs((s.offsetLeft - track.offsetLeft) - left);
+          if (d < bestD) { bestD = d; best = i; }
+        });
+        current = Math.min(best, lastStart());
+        mark();
+      }, 90);
+    });
+
+    var rz;
+    window.addEventListener("resize", function () {
+      clearTimeout(rz);
+      rz = setTimeout(function () { current = Math.min(current, lastStart()); mark(); }, 120);
+    });
+
+    track.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); go(current + 1); }
+      if (e.key === "ArrowLeft")  { e.preventDefault(); go(current - 1); }
+    });
+
+    mark();
+  }
+
   // --- meta ---------------------------------------------------------------
   section("meta", function () {
     if (!C.meta) return;
@@ -104,11 +203,24 @@
     text("lumTitle", T.lumTitle, "teaching.lumTitle");
     text("lumBody", T.lumBody, "teaching.lumBody");
     text("testTitle", T.testimonialsTitle, "teaching.testimonialsTitle");
-    html("quotes", list(T.testimonials).map(function (q, i) {
-      return '<div class="quote"><blockquote' + dp("teaching.testimonials." + i + ".quote") +
-             ">&ldquo;" + esc(q.quote) + "&rdquo;</blockquote><cite" +
-             dp("teaching.testimonials." + i + ".who") + ">" + esc(q.who) + "</cite></div>";
+    text("testNote", T.testimonialsNote, "teaching.testimonialsNote");
+    var voices = list(T.testimonials);
+    html("quotes", voices.map(function (q, i) {
+      // The teardrop frames are baked into the pictures themselves, lifted from
+      // the Lum site. The picture floats left and the text wraps to its real
+      // outline, so the lines run in close under the narrow point.
+      var face = q.image
+        ? '<img class="face" src="' + esc(q.image) + '" alt="' + esc(q.imageAlt || "") +
+          '" loading="lazy" width="460" height="555" style="shape-outside:url(' +
+          esc(q.image) + ')">'
+        : "";
+      return '<figure class="quote" role="group" aria-roledescription="slide" ' +
+             'aria-label="' + (i + 1) + ' of ' + voices.length + '">' + face +
+             '<blockquote' + dp("teaching.testimonials." + i + ".quote") +
+             ">&ldquo;" + esc(q.quote) + "&rdquo;</blockquote><figcaption" +
+             dp("teaching.testimonials." + i + ".who") + ">" + esc(q.who) + "</figcaption></figure>";
     }).join(""));
+    carousel("quotes", "quotesNav");
   });
 
   // --- workshops & talks ---------------------------------------------------

@@ -21,7 +21,7 @@ const CONTENT = {
   /* ---- The first thing people see ------------------------------------ */
   hero: {
     line1: "Educator and educational psychology researcher in Hanoi.",
-    line2: "I plan around the whole person, not just the level.",
+    line2: "I plan around the person, not just the level.",
     subtitle:
       "I teach English, thinking skills, and social-emotional skills.",
     photoCaption: "Ngoc Bui, Hanoi",
@@ -63,10 +63,44 @@ const CONTENT = {
     lumBody:
       "Since 2019 I have run my own small class under the name Lum, from the Latin for light. It is where I first tried teaching thinking skills and social-emotional skills alongside English, and it is still how I like to teach.",
     testimonialsTitle: "What students and parents said",
+    testimonialsNote:
+      "From the critical thinking and problem solving courses. Translated from Vietnamese.",
     testimonials: [
       {
+        quote: "I was glad to see my child excited before and after every lesson, and more confident presenting in English than before.",
+        who: "Ngoc Hue, parent, and a primary teacher in Hanoi",
+        image: "images/voice-ngoc-hue.webp",
+        imageAlt: "Ngoc Hue at a school end-of-year ceremony",
+      },
+      {
+        quote: "My child reads English material with real interest now, and talks to me about the topics from class.",
+        who: "Phong Chau, parent, and a retired architect",
+        image: "images/voice-phong-chau.webp",
+        imageAlt: "Phong Chau",
+      },
+      {
         quote: "What I liked most was getting to look at a problem from many different angles so I could argue better. It made my thinking more open.",
-        who: "Ngoc Mai, Year 9, Trung Hoa Secondary School, Hanoi",
+        who: "Ngoc Mai, Year 9 student, Hanoi",
+        image: "images/voice-ngoc-mai.webp",
+        imageAlt: "Ngoc Mai with a guitar",
+      },
+      {
+        quote: "The theory and the exercises get harder step by step, which keeps you thinking.",
+        who: "Hien Anh, Year 11 student, Hanoi",
+        image: "images/voice-hien-anh.webp",
+        imageAlt: "Hien Anh outdoors",
+      },
+      {
+        quote: "You can say what you think in class without worrying, and there is no pressure about winning or losing against the others.",
+        who: "Khanh Vi, Year 7 student, Hanoi",
+        image: "images/voice-khanh-vi.webp",
+        imageAlt: "Khanh Vi reading a display at an exhibition",
+      },
+      {
+        quote: "The course built up the general academic skills I needed for my MBA.",
+        who: "Hoang Huyen, MBA, University of Northampton, UK",
+        image: "images/voice-hoang-huyen.webp",
+        imageAlt: "Hoang Huyen while travelling",
       },
     ],
   },
@@ -159,19 +193,19 @@ const CONTENT = {
     modes: [
       {
         name: "I'm Frozen",
-        body: "For when nothing is moving. You choose how much of a push you want, gentle, medium or active, and get a small physical task: ten slow taps, humming for five seconds, photographing something green.",
+        body: "For when nothing is moving. You choose how much of a push you want, gentle, medium or active, and get a small physical task: ten slow taps, humming for five seconds, photographing something green. It uses the phone's sensors, so the body does something before the mind is asked to.",
         image: "images/app-unstuck.jpg",
         alt: "The intensity chooser: gentle, medium, active",
       },
       {
         name: "I Have a Task",
-        body: "You type what you need to do. The app finds it in a library of thirty everyday tasks and offers three ways in: the tiniest possible step, the whole thing in order, or a map of entry points you can start from anywhere. A non-linear approach to tasks.",
+        body: "You type what you need to do. The app finds it in a library of thirty everyday tasks and offers three ways in: the tiniest possible step, the whole thing in order, or a map of entry points you can start from anywhere. Different people are stuck in different places.",
         image: "images/app-approaches.jpg",
         alt: "Three approaches: tiniest step, from the beginning, start anywhere",
       },
       {
         name: "Sit with Luma",
-        body: "Body doubling with a turtle mascot. You set an intention and a timer, choose a background sound, and Luma waits with you, checking in a couple of times but never demanding a perfect answer. At the end you can say it went well, or say you just stayed. Both are acknowledged as valid answers.",
+        body: "Body doubling with a turtle. You set an intention and a timer, choose a background sound, and Luma waits with you, checking in a couple of times but never demanding an answer. At the end you can say it went well, or say you just stayed. Both are offered as real answers.",
         image: "images/app-timer.jpg",
         alt: "The Sit with Luma timer with a gentle check-in",
       },
@@ -184,7 +218,7 @@ const CONTENT = {
     ],
     learnedTitle: "What it taught me",
     learned:
-      "The app is one expression of values I hold across my work: getting unstuck is rarely about willpower or discipline. It is about designing a system that carries some of the weight for you, so the first step becomes possible. My favourite thing in it is a button: \"I stayed. That counts too.\"",
+      "That the hardest design decisions were all about tone. Every screen had a version that was subtly punishing: a streak to protect, a progress bar that judged you, a cheerful voice that assumed you were fine. Taking those out one by one is the same work as writing a lesson for a class you know is anxious. My favourite thing in it is a button: \"I stayed. That counts too.\"",
     status: "In development since June 2026, on Android. Not yet published, and I am aiming for the end of the year.",
   },
 
