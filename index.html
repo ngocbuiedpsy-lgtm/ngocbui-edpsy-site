@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Fredoka:wght@400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=16">
+<link rel="stylesheet" href="style.css?v=18">
 </head>
 <body>
 
@@ -137,7 +137,12 @@
         <h2 id="matTitle"></h2>
         <p class="intro" id="matIntro"></p>
       </div>
-      <div class="grid-2" id="matList"></div>
+      <div class="carousel" id="matCarousel">
+        <div class="materials" id="matList"
+             role="group" aria-roledescription="carousel"
+             aria-label="Materials" tabindex="0"></div>
+        <div class="carousel-nav" id="matNav" hidden></div>
+      </div>
       <p id="matNote" class="note-line"></p>
     </div>
   </section>
@@ -226,8 +231,8 @@
   <div class="wrap"><span id="footerText"></span></div>
 </footer>
 
-<script src="content.js?v=16"></script>
-<script src="main.js?v=16"></script>
+<script src="content.js?v=18"></script>
+<script src="main.js?v=18"></script>
 
 <!-- Edit mode: loads only when the address ends with ?edit -->
 <script>

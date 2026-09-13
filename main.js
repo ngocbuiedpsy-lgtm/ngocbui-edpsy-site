@@ -74,6 +74,7 @@
     if (!track || !nav) return;
     var slides = Array.prototype.slice.call(track.children);
     if (slides.length < 2) return;
+    var what = track.getAttribute("aria-label") || "items";
 
     var ARROW =
       '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true">' +
@@ -83,10 +84,10 @@
     nav.innerHTML =
       '<button type="button" class="car-arrow" data-dir="-1" aria-label="Previous">' +
         ARROW + "</button>" +
-      '<div class="car-dots" role="tablist" aria-label="Choose a quote">' +
+      '<div class="car-dots" role="tablist" aria-label="Choose one of ' + what + '">' +
         slides.map(function (s, i) {
           return '<button type="button" class="car-dot" role="tab" data-go="' + i +
-                 '" aria-label="Quote ' + (i + 1) + '"></button>';
+                 '" aria-label="' + what + ', number ' + (i + 1) + '"></button>';
         }).join("") +
       "</div>" +
       '<button type="button" class="car-arrow" data-dir="1" aria-label="Next">' +
@@ -263,15 +264,47 @@
 
     text("matTitle", M.title, MK + ".title");
     text("matIntro", M.intro, MK + ".intro");
+
     html("matList", list(M.items || M.projects).map(function (m, i) {
       var b = MK + (M.items ? ".items." : ".projects.") + i + ".";
-      var link = m.url
-        ? '<p><a href="' + esc(m.url) + '">' + esc(m.linkLabel || "Open it") + "</a></p>"
+
+      var pic = m.image
+        ? '<div class="mat-shot"><img src="' + esc(m.image) + '" alt="' +
+          esc(m.imageAlt || "") + '" loading="lazy"></div>'
         : "";
-      var badge = m.status ? '<span class="badge"' + dp(b + "status") + ">" + esc(m.status) + "</span>" : "";
-      return '<div class="card">' + badge + "<h3" + dp(b + "title") + ">" + esc(m.title) +
-        "</h3><p" + dp(b + "body") + ">" + esc(m.body) + "</p>" + link + "</div>";
+
+      var action = "";
+      if (m.url) {
+        action = '<a class="btn" href="' + esc(m.url) + '">' +
+                 esc(m.linkLabel || "Open it") + "</a>";
+      } else if (m.download) {
+        action = '<a class="btn" href="' + esc(m.download) + '" download>' + DL_ICON +
+                 esc(m.downloadLabel || "Download") + "</a>";
+      }
+
+      // the booklet shows the sample pages as a strip of thumbnails
+      var strip = list(m.pages).length
+        ? '<div class="mat-pages">' + list(m.pages).map(function (p) {
+            return '<a class="mat-page" href="' + esc(p.image) + '" target="_blank" rel="noopener">' +
+                   '<img src="' + esc(p.image) + '" alt="' + esc(p.alt || "") + '" loading="lazy"></a>';
+          }).join("") + "</div>"
+        : "";
+
+      var badge = m.audience
+        ? '<p class="mat-who"' + dp(b + "audience") + ">" + esc(m.audience) + "</p>"
+        : "";
+      var why = m.why ? '<p class="mat-why"' + dp(b + "why") + ">" + esc(m.why) + "</p>" : "";
+      var note = m.note ? '<p class="mat-note"' + dp(b + "note") + ">" + esc(m.note) + "</p>" : "";
+
+      return '<article class="material" role="group" aria-roledescription="slide" ' +
+             'aria-label="' + (i + 1) + ' of ' + list(M.items || M.projects).length + '">' +
+             '<div class="mat-text">' + badge +
+             "<h3" + dp(b + "title") + ">" + esc(m.title) + "</h3>" +
+             "<p" + dp(b + "body") + ">" + esc(m.body) + "</p>" +
+             why + action + note + "</div>" + pic + strip + "</article>";
     }).join(""));
+
+    carousel("matList", "matNav");
     text("matNote", M.note, MK + ".note");
   });
 

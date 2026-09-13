@@ -407,8 +407,7 @@ section { padding: clamp(3.5rem, 8vw, 6rem) 0; }
 }
 
 /* on the mint band, cards get a slightly deeper edge so they lift */
-#materials .card,
-#research .card { border-color: #C9E6DC; }
+#materials .card { border-color: #C9E6DC; }
 
 /* phone frames read better with a touch more shadow on a tinted ground */
 #app .phone { box-shadow: 0 12px 34px rgba(51,48,63,.22); }
@@ -710,7 +709,7 @@ section { position: relative; }
 #teaching    { --band: var(--cream-warm); }
 #talks       { --band: var(--cream); }
 #materials   { --band: var(--teal-pale); }
-#research    { --band: var(--teal-pale); }
+#research    { --band: var(--cream); }
 #app         { --band: var(--cream-warm); }
 #credentials { --band: var(--cream); }
 #contact     { --band: #1B5C4A; }
@@ -883,3 +882,85 @@ footer { border-top: none; padding-top: 3rem; }
 }
 /* equal heights, so every name sits on the same line across the row */
 .quotes { align-items: stretch; }
+
+/* ==========================================================================
+   v18  MATERIALS
+
+   One item at a time, the same shape as a workshop entry: words on the left,
+   a picture on the right. The booklet also shows its sample pages as a strip
+   of thumbnails underneath, which says "a real document" better than one
+   cover image does.
+   ========================================================================== */
+.materials {
+  display: flex;
+  gap: clamp(1.2rem, 3vw, 2.4rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  align-items: start;
+  margin-top: 1.6rem;
+}
+.materials::-webkit-scrollbar { display: none; }
+.materials:focus-visible { outline: 3px solid var(--teal-btn); outline-offset: 6px; border-radius: 14px; }
+@media (prefers-reduced-motion: reduce) { .materials { scroll-behavior: auto; } }
+
+.material {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.2rem, 3vw, 2.2rem);
+  align-items: start;
+}
+@media (min-width: 840px) {
+  .material { grid-template-columns: 1fr minmax(0, 26rem); }
+}
+
+.mat-who {
+  font-family: "Fredoka", sans-serif;
+  font-size: .82rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--tangerine-text);
+  margin: 0 0 .5rem;
+}
+.material h3 { font-size: clamp(1.3rem, 2.6vw, 1.75rem); margin-bottom: .7rem; }
+.mat-text p { max-width: var(--prose); }
+.mat-why { color: var(--ink-soft); }
+.mat-note { color: var(--ink-faint); font-size: .95rem; margin-top: .9rem; }
+.mat-text .btn { margin-top: .4rem; }
+
+.mat-shot img {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 26px rgba(51,48,63,.14);
+}
+
+/* ---- the sample pages, as a strip ---------------------------------------- */
+.mat-pages {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-top: .4rem;
+}
+.mat-page {
+  display: block;
+  line-height: 0;
+  border-radius: 6px;
+  outline-offset: 3px;
+}
+.mat-page img {
+  width: 84px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.mat-page:hover img,
+.mat-page:focus-visible img {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(51,48,63,.18);
+}
+@media (max-width: 620px) { .mat-page img { width: 68px; } }

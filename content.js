@@ -21,7 +21,7 @@ const CONTENT = {
   /* ---- The first thing people see ------------------------------------ */
   hero: {
     line1: "Educator and educational psychology researcher in Hanoi.",
-    line2: "I plan around the person, not just the level.",
+    line2: "I plan around the whole person, not just the level.",
     subtitle:
       "I teach English, thinking skills, and social-emotional skills.",
     photoCaption: "Ngoc Bui, Hanoi",
@@ -144,6 +144,76 @@ const CONTENT = {
     ],
   },
 
+  /* ---- Materials -------------------------------------------------------- */
+  materials: {
+    title: "Materials",
+    intro:
+      "Things I have made for lessons. The three activities open in their own page and work on a phone. Nothing typed into them is saved or sent anywhere.",
+
+    items: [
+      {
+        title: "Including students with autism in the primary classroom",
+        audience: "A guide for teachers",
+        body:
+          "A twenty-eight page booklet for primary teachers, written in 2019 during my Master of Education at UNSW. It covers what the research says about autism in the classroom, four evidence-based practices with the steps to run each, and practical strategies: visual cues, schedules, calm corners, and how to help friendships along. Referenced throughout.",
+        why:
+          "Why I built it this way: what a class teacher can find is usually either a short leaflet or a literature review. I wanted the thing in between, short enough to read in an evening and specific enough to use the next morning.",
+        image: "images/material-booklet.webp",
+        imageAlt: "The cover of the booklet, Including students with Autism Spectrum Disorder in the primary classroom",
+        download: "files/Ngoc-Bui-autism-booklet-sample.pdf",
+        downloadLabel: "Read the sample (PDF, 10 pages, 2MB)",
+        note: "Nine pages here as a sample. Write to me for the full booklet.",
+        pages: [
+          { image: "images/booklet-p1.webp", alt: "Cover page" },
+          { image: "images/booklet-p2.webp", alt: "Page 3, general information about autism" },
+          { image: "images/booklet-p3.webp", alt: "Page 8, the phases of PECS and social stories" },
+          { image: "images/booklet-p4.webp", alt: "Page 9, writing a social story, step by step" },
+          { image: "images/booklet-p5.webp", alt: "Page 12, visual task cards and a social story example" },
+          { image: "images/booklet-p6.webp", alt: "Page 15, the Premack principle and a first-then board" },
+          { image: "images/booklet-p7.webp", alt: "Page 18, keeping the classroom calm, with a calm zone" },
+          { image: "images/booklet-p8.webp", alt: "Page 19, classroom schedules, rules and language" },
+          { image: "images/booklet-p9.webp", alt: "Page 21, the setup principle and fostering friendships" },
+        ],
+      },
+      {
+        title: "Feelings Come in All Sizes",
+        audience: "For primary school students",
+        body:
+          "An interactive page where children meet two characters, Mai and Bao, and learn that a feeling is not only good or bad, it also has a size. Children notice where a feeling shows up in the body, then use a simple plus and minus control to show how big four feelings are for them right now.",
+        why:
+          "Why I built it this way: children are asked how they feel far more often than they are given a way to answer. \u201CSad\u201D and \u201Ca bit sad\u201D are different things, and giving the size its own control lets a child show that difference rather than having to explain it. Nothing is saved or sent anywhere, so it stays a noticing exercise and not a record.",
+        image: "images/material-feelings.webp",
+        imageAlt: "Four feeling cards, each with a drawn face and a control for how big the feeling is",
+        url: "materials/sel-feelings-check-in.html",
+        linkLabel: "Try it",
+      },
+      {
+        title: "Assertiveness",
+        audience: "For teenagers and young adults",
+        body:
+          "Four steps behind an assertive response, one situation played out three ways, then six everyday situations where you choose how you would respond and see what tends to follow.",
+        why:
+          "Why I built it this way: passive, aggressive and assertive are easy to define and hard to actually use. The situations here are ordinary ones, a queue, a group project, a comment from a family member, and the feedback describes what usually happens rather than marking an answer right or wrong. Saying the useful thing under pressure is a skill, and skills need rehearsal more than definitions.",
+        image: "images/material-assertiveness.webp",
+        imageAlt: "One situation shown three ways: passive, aggressive and assertive",
+        url: "materials/assertiveness.html",
+        linkLabel: "Try it",
+      },
+      {
+        title: "Managing Big Feelings",
+        audience: "For young adults",
+        body:
+          "The same situation runs twice, once where a thought sends it spiralling and once where it settles, so the path from situation to thought to feeling to action becomes visible. Then a scale for rating how big a feeling is, and the opposite action skill for anger, anxiety, sadness and frustration.",
+        why:
+          "Why I built it this way: telling someone that a thought shapes a feeling rarely lands. Running one ordinary situation twice, changing only the thought, shows it instead. It draws on cognitive behavioural therapy and on the opposite action skill from dialectical behaviour therapy. It is a teaching tool, not therapy.",
+        image: "images/material-big-feelings.webp",
+        imageAlt: "The cycle from situation to thought to feeling to behaviour, shown in four steps",
+        url: "materials/managing-big-feelings.html",
+        linkLabel: "Try it",
+      },
+    ],
+  },
+
   /* ---- Research -------------------------------------------------------- */
   research: {
     title: "Research & writing",
@@ -249,18 +319,13 @@ const CONTENT = {
 
   /* ---- Contact --------------------------------------------------------- */
   contact: {
-    title: "Say hello",
+    title: "Get in touch",
     body:
       "If you are putting together something for students or for teachers and you think I might fit, I'd like to hear about it.",
     availability:
-      "Hanoi based, open to Ho Chi Minh City, Da Nang and remote. Open to the right role.",
+      "Hanoi based, open to Ho Chi Minh City, Da Nang and remote.",
     email: "ngocbui.edpsy@gmail.com",
-    links: [
-      { label: "ORCID", url: "https://orcid.org/0000-0002-3556-4952" },
-      { label: "Real Insights", url: "https://www.facebook.com/real.insights.vn" },
-      { label: "LinkedIn", url: "https://www.linkedin.com/in/nora-ngoc-bui-33437812b" },
-    ],
   },
 
-  footer: "Ngoc Bui · Hanoi, Vietnam",
+  footer: "Ngoc Bui",
 };
