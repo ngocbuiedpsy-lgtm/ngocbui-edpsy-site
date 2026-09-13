@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assertiveness Skills Activity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Fredoka:wght@400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:          #FDF8F3;
+    --cream-warm:     #F8F0E7;
+    --card:           #FFFDFA;
+    --mint:           #DFF3EC;
+    --ink:            #33303F;
+    --ink-soft:       #5F5A6B;
+    --ink-faint:      #6F6A79;
+    --teal:           #2E8B72;
+    --teal-deep:      #1F6B57;
+    --teal-btn:       #237059;
+    --teal-dark:      #1B5C4A;
+    --tangerine:      #E8794A;
+    --tangerine-text: #BA4818;
+    --line:           #E8DFD4;
+    --prose: 40rem;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-weight: 500;
+    font-size: 1.15rem;
+    line-height: 1.65;
+    letter-spacing: -0.012em;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--teal-deep);
+    margin: 0 0 0.5em 0;
+  }
+
+  p { margin: 0 0 1em 0; }
+
+  a {
+    color: var(--teal-deep);
+    text-underline-offset: 3px;
+  }
+
+  .eyebrow {
+    font-family: "Fredoka", "DM Sans", sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+  }
+
+  button {
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 3px solid #237059;
+    outline-offset: 3px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .tick {
+    display: inline-block;
+    width: 26px;
+    height: 6px;
+    border-radius: 4px;
+    background: var(--tangerine);
+    margin-bottom: 0.6em;
+  }
+
+  .heading-emoji {
+    display: inline-block;
+    width: 0.92em; height: 0.92em;
+    margin-right: 0.3em;
+    vertical-align: -0.1em;
+  }
+
+  .step-emoji {
+    width: 30px; height: 30px;
+    margin-left: 0.55rem;
+    vertical-align: -0.5rem;
+  }
+
+  .situation-emoji {
+    width: 46px; height: 46px;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  .scenario-emoji {
+    width: 22px; height: 22px;
+    margin-right: 0.45rem;
+    vertical-align: -0.35em;
+  }
+
+  /* Layout */
+  .wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  header.top {
+    padding: 1.25rem 0 0.5rem 0;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 0.98rem;
+    padding: 0.4rem 0.2rem;
+  }
+
+  .hero {
+    padding: 2rem 0 2.5rem 0;
+  }
+
+  .hero .eyebrow { margin-bottom: 0.9rem; }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 9vw, 3.6rem);
+  }
+
+  .hero .lede {
+    max-width: var(--prose);
+    color: var(--ink-soft);
+    font-size: 1.15rem;
+  }
+
+  section {
+    padding: 2.25rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  section .intro {
+    max-width: var(--prose);
+    color: var(--ink-soft);
+    margin-bottom: 1.5rem;
+  }
+
+  /* Step cards */
+  .steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .steps { grid-template-columns: 1fr 1fr; }
+  }
+
+  .step-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 1.25rem 1.25rem 1.1rem 1.25rem;
+  }
+
+  .step-num {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #fff;
+    background: var(--teal);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.7rem;
+    background: var(--teal-btn);
+  }
+
+  .step-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .step-card p {
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .more-btn {
+    background: transparent;
+    border: none;
+    color: var(--teal-deep);
+    font-weight: 600;
+    padding: 0.5rem 0.2rem;
+    min-height: 44px;
+    text-align: left;
+  }
+
+  .more-btn::after {
+    content: " +";
+  }
+
+  .more-btn[aria-expanded="true"]::after {
+    content: " \2212";
+  }
+
+  .step-detail {
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+    padding-top: 0.3rem;
+  }
+
+  .step-detail[hidden] { display: none; }
+
+  /* Modelled example */
+  .model-box {
+    background: var(--cream-warm);
+    border-radius: 20px;
+    padding: 1.5rem;
+  }
+
+  .model-situation {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.25rem;
+    color: var(--ink);
+    margin-bottom: 1.1rem;
+  }
+
+  .tab-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .tab-btn {
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: 999px;
+    padding: 0.6rem 1.1rem;
+    min-height: 44px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .tab-btn[aria-pressed="true"] {
+    background: var(--teal-btn);
+    border-color: var(--teal-btn);
+    color: #fff;
+  }
+
+  .tab-btn[aria-pressed="true"]::before {
+    content: "\2713 ";
+  }
+
+  .model-panel {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 1.1rem 1.25rem;
+    min-height: 3.5rem;
+    color: var(--ink-soft);
+  }
+
+  .model-panel.placeholder {
+    font-style: italic;
+    color: var(--ink-faint);
+  }
+
+  /* Scenario cards */
+  .scenario-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 1.4rem;
+    margin-bottom: 1.3rem;
+  }
+
+  .scenario-num {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--tangerine-text);
+    margin-bottom: 0.4rem;
+  }
+
+  .scenario-situation {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .option-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    list-style: none;
+    margin: 0 0 1rem 0;
+    padding: 0;
+  }
+
+  .option-btn {
+    width: 100%;
+    text-align: left;
+    background: var(--cream-warm);
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    min-height: 44px;
+    color: var(--ink);
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+
+  .option-btn[aria-pressed="true"] {
+    border-color: var(--teal);
+    background: var(--mint);
+  }
+
+  .option-btn[aria-pressed="true"]::before {
+    content: "\2713 ";
+    font-weight: 700;
+    color: var(--teal-deep);
+  }
+
+  .feedback {
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+    background: var(--mint);
+  }
+
+  .feedback[hidden] { display: none; }
+
+  .feedback-label {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.85rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .feedback-label.passive { color: var(--ink-soft); }
+  .feedback-label.aggressive { color: var(--tangerine-text); }
+  .feedback-label.assertive { color: var(--teal-deep); }
+
+  .feedback p {
+    margin: 0;
+    color: var(--ink);
+    font-size: 1rem;
+  }
+
+  /* Reflection */
+  .reflect-box {
+    background: var(--cream-warm);
+    border-radius: 20px;
+    padding: 1.5rem;
+  }
+
+  .reflect-box ul {
+    padding-left: 1.2rem;
+    color: var(--ink-soft);
+  }
+
+  .reflect-box li { margin-bottom: 0.5rem; }
+
+  textarea {
+    width: 100%;
+    min-height: 8rem;
+    margin-top: 0.75rem;
+    padding: 0.9rem;
+    border-radius: 12px;
+    border: 2px solid var(--line);
+    background: var(--card);
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--ink);
+    resize: vertical;
+  }
+
+  .privacy-note {
+    font-size: 0.95rem;
+    color: var(--ink-faint);
+    margin-top: 0.6rem;
+  }
+
+  .calm-note {
+    margin-top: 1.5rem;
+    padding: 1rem 1.2rem;
+    background: var(--card);
+    border-left: 4px solid var(--teal);
+    border-radius: 4px;
+    color: var(--ink-soft);
+    font-size: 1rem;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--teal-dark);
+    color: #fff;
+    margin-top: 2rem;
+    padding: 2rem 0;
+  }
+
+  footer .wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  footer a {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  footer p {
+    margin: 0;
+    color: var(--mint);
+    font-size: 0.98rem;
+  }
+
+
+  /* ---- icons -----------------------------------------------------------
+     Drawn in the site palette rather than emoji, so they look the same on
+     every device and stay sharp at any size. -------------------------- */
+  .icon { display: inline-block; width: 1em; height: 1em; vertical-align: -0.14em; }
+  .icon-lg { width: 100%; height: 100%; display: block; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+
+<symbol id="i-happy" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="40" fill="#DFF3EC" stroke="#1F6B57" stroke-width="4"/>
+  <circle cx="27" cy="58" r="6.5" fill="#E8794A" opacity=".32"/>
+  <circle cx="73" cy="58" r="6.5" fill="#E8794A" opacity=".32"/>
+  <circle cx="37" cy="43" r="4.6" fill="#33303F"/><circle cx="63" cy="43" r="4.6" fill="#33303F"/>
+  <path d="M34 59c5 8 27 8 32 0" fill="none" stroke="#33303F" stroke-width="4.6" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="i-sad" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="40" fill="#DFF3EC" stroke="#1F6B57" stroke-width="4"/>
+  <path d="M30 38c4-3 9-3 13 1M70 38c-4-3-9-3-13 1" fill="none" stroke="#33303F" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="37" cy="49" r="4.6" fill="#33303F"/><circle cx="63" cy="49" r="4.6" fill="#33303F"/>
+  <path d="M37 71c4-7 22-7 26 0" fill="none" stroke="#33303F" stroke-width="4.6" stroke-linecap="round"/>
+  <path d="M33 56c-2 6-4 8-4 11a4 4 0 0 0 8 0c0-3-2-5-4-11Z" fill="#5FA8DC"/>
+</symbol>
+
+<symbol id="i-mad" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="40" fill="#FCEBE1" stroke="#BA4818" stroke-width="4"/>
+  <path d="M29 37 45 46M71 37 55 46" fill="none" stroke="#33303F" stroke-width="4.6" stroke-linecap="round"/>
+  <circle cx="38" cy="54" r="4.6" fill="#33303F"/><circle cx="62" cy="54" r="4.6" fill="#33303F"/>
+  <path d="M37 73c4-7 22-7 26 0" fill="none" stroke="#33303F" stroke-width="4.6" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="i-worried" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="40" fill="#F8F0E7" stroke="#1F6B57" stroke-width="4"/>
+  <path d="M30 37c5-5 11-2 14 3M70 37c-5-5-11-2-14 3" fill="none" stroke="#33303F" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="37" cy="51" r="4.6" fill="#33303F"/><circle cx="63" cy="51" r="4.6" fill="#33303F"/>
+  <path d="M37 70c4-4 8 3 13 0s9 4 13 0" fill="none" stroke="#33303F" stroke-width="4.6" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="i-frustrated" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="40" fill="#F8F0E7" stroke="#BA4818" stroke-width="4"/>
+  <path d="M30 40 45 45M70 40 55 45" fill="none" stroke="#33303F" stroke-width="4.4" stroke-linecap="round"/>
+  <circle cx="38" cy="53" r="4.4" fill="#33303F"/><circle cx="62" cy="53" r="4.4" fill="#33303F"/>
+  <rect x="35" y="65" width="30" height="12" rx="4" fill="#FFFDFA" stroke="#33303F" stroke-width="3.4"/>
+  <path d="M45 65v12M55 65v12" fill="none" stroke="#33303F" stroke-width="3"/>
+</symbol>
+
+<symbol id="i-mai" viewBox="0 0 100 100">
+  <path d="M23 45 3 31l5 22Z" fill="#1F6B57"/>
+  <circle cx="49" cy="52" r="30" fill="#2E8B72"/>
+  <path d="M52 64a24 24 0 0 0 20 13 27 27 0 0 1-23 5Z" fill="#DFF3EC" opacity=".5"/>
+  <ellipse cx="43" cy="59" rx="14" ry="9" transform="rotate(-14 43 59)" fill="#1F6B57"/>
+  <path d="M75 47 94 52 75 57Z" fill="#E8794A"/>
+  <circle cx="64" cy="43" r="6" fill="#FFFDFA"/><circle cx="65.4" cy="43.4" r="3" fill="#33303F"/>
+  <path d="M43 82v9M57 82v9" fill="none" stroke="#E8794A" stroke-width="4" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="i-bao" viewBox="0 0 100 100">
+  <circle cx="27" cy="28" r="12" fill="#C98F5E"/><circle cx="27" cy="28" r="5.5" fill="#EBCBAA"/>
+  <circle cx="73" cy="28" r="12" fill="#C98F5E"/><circle cx="73" cy="28" r="5.5" fill="#EBCBAA"/>
+  <circle cx="50" cy="53" r="33" fill="#C98F5E"/>
+  <ellipse cx="50" cy="65" rx="19" ry="14" fill="#F3DFC8"/>
+  <circle cx="37" cy="46" r="4.8" fill="#33303F"/><circle cx="63" cy="46" r="4.8" fill="#33303F"/>
+  <ellipse cx="50" cy="59" rx="6" ry="4.4" fill="#33303F"/>
+  <path d="M50 63v4M50 67c-3 4-9 3-9-2M50 67c3 4 9 3 9-2" fill="none" stroke="#33303F" stroke-width="3.2" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="i-pin" viewBox="0 0 100 100">
+  <path d="M50 13c-15 0-27 12-27 27 0 18 21 36 26 43a2 2 0 0 0 3 0c5-7 25-25 25-43 0-15-12-27-27-27Z" fill="#DFF3EC" stroke="#1F6B57" stroke-width="4.5"/>
+  <circle cx="50" cy="40" r="9" fill="#E8794A"/>
+</symbol>
+
+<symbol id="i-thought" viewBox="0 0 100 100">
+  <path d="M33 22h36a16 16 0 0 1 0 32H49L34 67V54h-1a16 16 0 0 1 0-32Z" fill="#FFFDFA" stroke="#1F6B57" stroke-width="4.5" stroke-linejoin="round"/>
+  <circle cx="29" cy="76" r="7" fill="#DFF3EC" stroke="#1F6B57" stroke-width="3.5"/>
+  <circle cx="17" cy="89" r="4.5" fill="#DFF3EC" stroke="#1F6B57" stroke-width="3"/>
+</symbol>
+
+<symbol id="i-heart" viewBox="0 0 100 100">
+  <path d="M50 82C35 70 18 57 18 42a17 17 0 0 1 32-8 17 17 0 0 1 32 8c0 15-17 28-32 40Z" fill="#E8794A"/>
+  <path d="M30 45c1 7 6 13 12 18" fill="none" stroke="#FFFDFA" stroke-width="4.5" stroke-linecap="round" opacity=".7"/>
+</symbol>
+
+<symbol id="i-footprint" viewBox="0 0 100 100">
+  <ellipse cx="52" cy="62" rx="19" ry="25" fill="#2E8B72"/>
+  <circle cx="30" cy="34" r="7" fill="#2E8B72"/><circle cx="45" cy="27" r="7.5" fill="#2E8B72"/>
+  <circle cx="61" cy="26" r="7" fill="#2E8B72"/><circle cx="75" cy="32" r="6" fill="#2E8B72"/>
+</symbol>
+
+<symbol id="i-thermometer" viewBox="0 0 100 100">
+  <path d="M50 12a11 11 0 0 1 11 11v34a20 20 0 1 1-22 0V23a11 11 0 0 1 11-11Z" fill="#FFFDFA" stroke="#1F6B57" stroke-width="4.5"/>
+  <circle cx="50" cy="72" r="11" fill="#E8794A"/>
+  <rect x="46" y="38" width="8" height="30" rx="4" fill="#E8794A"/>
+  <path d="M66 30h10M66 42h10M66 54h10" fill="none" stroke="#1F6B57" stroke-width="4" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="i-speak" viewBox="0 0 100 100">
+  <path d="M18 22h44a10 10 0 0 1 10 10v26a10 10 0 0 1-10 10H40L24 82V68h-6a10 10 0 0 1-10-10V32a10 10 0 0 1 10-10Z" fill="#2E8B72"/>
+  <path d="M22 38h30M22 50h22" fill="none" stroke="#FFFDFA" stroke-width="5" stroke-linecap="round"/>
+  <path d="M80 34c5 5 5 20 0 25M90 26c8 9 8 34 0 43" fill="none" stroke="#E8794A" stroke-width="4.5" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="i-steps" viewBox="0 0 100 100">
+  <rect x="10" y="64" width="26" height="24" rx="5" fill="#DFF3EC" stroke="#1F6B57" stroke-width="3.5"/>
+  <rect x="37" y="46" width="26" height="42" rx="5" fill="#9FD6C3" stroke="#1F6B57" stroke-width="3.5"/>
+  <rect x="64" y="24" width="26" height="64" rx="5" fill="#2E8B72" stroke="#1F6B57" stroke-width="3.5"/>
+  <circle cx="77" cy="14" r="6" fill="#E8794A"/>
+</symbol>
+
+<symbol id="i-scene" viewBox="0 0 100 100">
+  <rect x="10" y="20" width="80" height="60" rx="10" fill="#DFF3EC" stroke="#1F6B57" stroke-width="4.5"/>
+  <path d="M42 38 65 50 42 62Z" fill="#E8794A"/>
+</symbol>
+
+<symbol id="i-target" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="38" fill="#FFFDFA" stroke="#1F6B57" stroke-width="4.5"/>
+  <circle cx="50" cy="50" r="24" fill="none" stroke="#1F6B57" stroke-width="4.5"/>
+  <circle cx="50" cy="50" r="11" fill="#E8794A"/>
+</symbol>
+
+<symbol id="i-bolt" viewBox="0 0 100 100">
+  <path d="M56 8 24 55h20l-8 37 34-49H50Z" fill="#E8794A" stroke="#BA4818" stroke-width="3.5" stroke-linejoin="round"/>
+</symbol>
+
+<symbol id="i-repeat" viewBox="0 0 100 100">
+  <path d="M22 50a28 28 0 0 1 48-20" fill="none" stroke="#1F6B57" stroke-width="6" stroke-linecap="round"/>
+  <path d="M78 50a28 28 0 0 1-48 20" fill="none" stroke="#2E8B72" stroke-width="6" stroke-linecap="round"/>
+  <path d="M56 16 74 30 58 40Z" fill="#1F6B57"/>
+  <path d="M44 84 26 70l16-10Z" fill="#2E8B72"/>
+</symbol>
+
+<symbol id="i-person" viewBox="0 0 100 100">
+  <circle cx="50" cy="24" r="13" fill="#2E8B72"/>
+  <path d="M50 42c-12 0-19 8-19 19v16a5 5 0 0 0 10 0v-8h18v8a5 5 0 0 0 10 0V61c0-11-7-19-19-19Z" fill="#2E8B72"/>
+  <path d="M41 88v4M59 88v4" fill="none" stroke="#E8794A" stroke-width="5" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="i-plate" viewBox="0 0 100 100">
+  <path d="M64 22 44 44M76 30 56 52" fill="none" stroke="#BA4818" stroke-width="5" stroke-linecap="round"/>
+  <path d="M14 48h72a36 36 0 0 1-72 0Z" fill="#DFF3EC" stroke="#1F6B57" stroke-width="4.5" stroke-linejoin="round"/>
+  <path d="M26 48a24 10 0 0 1 48 0Z" fill="#E8794A"/>
+  <path d="M30 86h40" fill="none" stroke="#1F6B57" stroke-width="4.5" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="i-hand" viewBox="0 0 100 100">
+  <rect x="28" y="26" width="12" height="34" rx="6" fill="#2E8B72"/>
+  <rect x="41" y="20" width="12" height="40" rx="6" fill="#2E8B72"/>
+  <rect x="54" y="22" width="12" height="38" rx="6" fill="#2E8B72"/>
+  <rect x="67" y="30" width="12" height="30" rx="6" fill="#2E8B72"/>
+  <path d="M24 48c-6-3-12 0-13 6-1 5 2 9 6 13l10 10a24 24 0 0 0 17 7h14a22 22 0 0 0 22-22V44H28Z" fill="#2E8B72"/>
+  <path d="M24 48 14 42" fill="none" stroke="#2E8B72" stroke-width="11" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="i-bag" viewBox="0 0 100 100">
+  <rect x="14" y="66" width="72" height="18" rx="5" fill="#2E8B72"/>
+  <rect x="20" y="70" width="6" height="10" rx="2" fill="#DFF3EC"/>
+  <rect x="18" y="46" width="64" height="18" rx="5" fill="#E8794A"/>
+  <rect x="24" y="50" width="6" height="10" rx="2" fill="#FCEBE1"/>
+  <rect x="24" y="26" width="56" height="18" rx="5" fill="#9FD6C3"/>
+  <rect x="30" y="30" width="6" height="10" rx="2" fill="#1F6B57"/>
+</symbol>
+
+<symbol id="i-clipboard" viewBox="0 0 100 100">
+  <rect x="20" y="18" width="60" height="72" rx="10" fill="#FFFDFA" stroke="#1F6B57" stroke-width="4.5"/>
+  <rect x="36" y="8" width="28" height="18" rx="7" fill="#E8794A"/>
+  <path d="M34 46h32M34 60h32M34 74h20" fill="none" stroke="#1F6B57" stroke-width="4.5" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="i-house" viewBox="0 0 100 100">
+  <path d="M50 12 88 44H12Z" fill="#E8794A"/>
+  <path d="M22 44h56v40a6 6 0 0 1-6 6H28a6 6 0 0 1-6-6Z" fill="#DFF3EC" stroke="#1F6B57" stroke-width="4.5"/>
+  <rect x="40" y="60" width="20" height="30" rx="5" fill="#2E8B72"/>
+</symbol>
+
+<symbol id="i-door" viewBox="0 0 100 100">
+  <rect x="24" y="10" width="52" height="80" rx="10" fill="#DFF3EC" stroke="#1F6B57" stroke-width="4.5"/>
+  <rect x="36" y="24" width="28" height="28" rx="6" fill="none" stroke="#1F6B57" stroke-width="3.5"/>
+  <circle cx="64" cy="62" r="5" fill="#E8794A"/>
+</symbol>
+
+
+<symbol id="i-bubbles" viewBox="0 0 100 100">
+  <path d="M52 14h26a12 12 0 0 1 12 12v18a12 12 0 0 1-12 12h-4v12L60 56H52a12 12 0 0 1-12-12V26a12 12 0 0 1 12-12Z" fill="#DFF3EC" stroke="#1F6B57" stroke-width="4"/>
+  <path d="M22 40h22a12 12 0 0 1 12 12v16a12 12 0 0 1-12 12H34L20 92V80h-2a12 12 0 0 1-12-12V52a12 12 0 0 1 12-12Z" fill="#2E8B72"/>
+  <path d="M16 58h22M16 70h14" fill="none" stroke="#FFFDFA" stroke-width="4.5" stroke-linecap="round"/>
+</symbol>
+</defs></svg>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="back-link" href="/">Back to Ngoc Bui</a>
+  </div>
+</header>
+
+<section class="hero" style="border-top:none;">
+  <div class="wrap">
+    <p class="eyebrow">An activity by Ngoc Bui</p>
+    <span class="tick" aria-hidden="true"></span>
+    <h1><svg class="heading-emoji" aria-hidden="true"><use href="#i-speak"/></svg>Assertiveness</h1>
+    <p class="lede">Standing up for yourself, without stepping on others. Being assertive means saying what you think and need, clearly and respectfully, even when it feels easier to stay quiet or to react strongly. This activity walks through four steps, shows what assertiveness can look like in practice, then lets you try it yourself with six everyday situations.</p>
+  </div>
+</section>
+
+<section id="steps">
+  <div class="wrap">
+    <span class="tick" aria-hidden="true"></span>
+    <h2><svg class="heading-emoji" aria-hidden="true"><use href="#i-steps"/></svg>The four steps</h2>
+    <p class="intro">These are the steps behind an assertive response. Tap "+" on any step for a bit more detail.</p>
+    <div class="steps">
+
+      <div class="step-card">
+        <span class="step-num" aria-hidden="true">1</span><svg class="step-emoji" aria-hidden="true"><use href="#i-heart"/></svg>
+        <h3><span class="sr-only">Step 1: </span>Notice how you feel</h3>
+        <p>Name what you are feeling in the moment: annoyed, nervous, embarrassed, hurt. Naming a feeling makes it easier to manage.</p>
+        <button class="more-btn" type="button" aria-expanded="false" aria-controls="detail-1">More</button>
+        <div id="detail-1" class="step-detail" hidden>
+          <p>There is no wrong feeling to have. The goal is not to switch it off, it is to notice it before you react.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <span class="step-num" aria-hidden="true">2</span><svg class="step-emoji" aria-hidden="true"><use href="#i-bolt"/></svg>
+        <h3><span class="sr-only">Step 2: </span>Notice your instinct</h3>
+        <p>Most people lean one of two ways under pressure: staying silent, or reacting strongly. Both are understandable, but neither usually gets your needs met.</p>
+        <button class="more-btn" type="button" aria-expanded="false" aria-controls="detail-2">More</button>
+        <div id="detail-2" class="step-detail" hidden>
+          <p>A passive response protects the moment but leaves your own needs unheard. An aggressive response gets your point across but can damage the relationship. Assertive sits between the two.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <span class="step-num" aria-hidden="true">3</span><svg class="step-emoji" aria-hidden="true"><use href="#i-bubbles"/></svg>
+        <h3><span class="sr-only">Step 3: </span>Choose your words</h3>
+        <p>Try starting with "I feel", "I'd like" or "I prefer" rather than staying silent or placing blame. It keeps the focus on what you need.</p>
+        <button class="more-btn" type="button" aria-expanded="false" aria-controls="detail-3">More</button>
+        <div id="detail-3" class="step-detail" hidden>
+          <p>For example: "I feel frustrated when plans change last minute. I'd like a bit more notice next time."</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <span class="step-num" aria-hidden="true">4</span><svg class="step-emoji" aria-hidden="true"><use href="#i-repeat"/></svg>
+        <h3><span class="sr-only">Step 4: </span>Act it out, then review</h3>
+        <p>Say what you planned to say. Afterwards, think about how it went and what you might adjust next time.</p>
+        <button class="more-btn" type="button" aria-expanded="false" aria-controls="detail-4">More</button>
+        <div id="detail-4" class="step-detail" hidden>
+          <p>It will not always go perfectly, and that is fine. Each attempt is useful information for the next one. Assertiveness gets easier with practice.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="model">
+  <div class="wrap">
+    <span class="tick" aria-hidden="true"></span>
+    <h2><svg class="heading-emoji" aria-hidden="true"><use href="#i-scene"/></svg>See it in action</h2>
+    <p class="intro">Here is one situation. Choose a response style below to see how it could play out.</p>
+    <div class="model-box">
+      <svg class="situation-emoji" aria-hidden="true"><use href="#i-person"/></svg>
+      <p class="model-situation">You have been waiting in a queue for a while, and someone steps in front of you right as it is nearly your turn.</p>
+      <div class="tab-row" role="group" aria-label="Choose a response style">
+        <button class="tab-btn" type="button" data-tab="passive" aria-pressed="false">Passive</button>
+        <button class="tab-btn" type="button" data-tab="aggressive" aria-pressed="false">Aggressive</button>
+        <button class="tab-btn" type="button" data-tab="assertive" aria-pressed="false">Assertive</button>
+      </div>
+      <div class="model-panel placeholder" id="model-panel" aria-live="polite">
+        Choose a response style above to see how the same situation could play out.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="practice">
+  <div class="wrap">
+    <span class="tick" aria-hidden="true"></span>
+    <h2><svg class="heading-emoji" aria-hidden="true"><use href="#i-target"/></svg>Try it yourself</h2>
+    <p class="intro">Here are six everyday situations. For each one, choose how you would respond and see what tends to happen.</p>
+    <div id="scenario-list"></div>
+  </div>
+</section>
+
+<section id="reflect">
+  <div class="wrap">
+    <span class="tick" aria-hidden="true"></span>
+    <h2><svg class="heading-emoji" aria-hidden="true"><use href="#i-thought"/></svg>Think it through</h2>
+    <div class="reflect-box">
+      <p class="intro" style="margin-bottom:0.8rem;">A couple of questions to sit with, on your own or with a partner.</p>
+      <ul>
+        <li>Think of a real situation where you stayed quiet, even though you wanted to say something. What could an assertive version sound like?</li>
+        <li>Which is easiest for you to use, passive, aggressive or assertive? Why do you think that is?</li>
+      </ul>
+      <label for="think-box" style="font-weight:600; display:block; margin-top:0.6rem;">Jot down some thoughts, if you would like to.</label>
+      <textarea id="think-box" placeholder="Write here if it helps you think it through..."></textarea>
+      <p class="privacy-note">This box is just for your own thinking. Nothing you type here is saved, sent anywhere or seen by anyone else. It disappears when you leave the page.</p>
+      <p class="calm-note">If a situation ever feels like more than you can handle on your own, it is okay to talk it through with a trusted adult: a teacher, a school counsellor, or someone in your family you trust.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Made by Ngoc Bui, for use in lessons on social and emotional skills.</p>
+    <a href="/">Back to Ngoc Bui</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  // builds one of the drawn icons from the set at the top of the page
+  function icon(id, cls) {
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("class", cls || "icon");
+    svg.setAttribute("aria-hidden", "true");
+    var use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+    use.setAttribute("href", "#" + id);
+    svg.appendChild(use);
+    return svg;
+  }
+
+  // Step detail toggles
+  document.querySelectorAll(".more-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var expanded = btn.getAttribute("aria-expanded") === "true";
+      var target = document.getElementById(btn.getAttribute("aria-controls"));
+      btn.setAttribute("aria-expanded", String(!expanded));
+      btn.textContent = expanded ? "More" : "Less";
+      if (target) target.hidden = expanded;
+    });
+  });
+
+  // Modelled example tabs
+  var modelData = {
+    passive: "Passive response: you say nothing and let them go ahead, even though it bothers you. Result: you avoid a scene, but you feel unheard and annoyed for a while afterwards.",
+    aggressive: "Aggressive response: you snap, “Are you serious? Get to the back of the line!” Result: you get your point across, but the moment turns tense and the other person gets defensive.",
+    assertive: "Assertive response: you say, “Excuse me, I have been waiting a while, could you please go to the back of the line?” Result: the other person realises the mistake and moves back. You have said what you needed, calmly and clearly."
+  };
+
+  var tabButtons = document.querySelectorAll(".tab-btn");
+  var modelPanel = document.getElementById("model-panel");
+
+  tabButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      tabButtons.forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
+      btn.setAttribute("aria-pressed", "true");
+      var key = btn.getAttribute("data-tab");
+      modelPanel.textContent = modelData[key];
+      modelPanel.classList.remove("placeholder");
+    });
+  });
+
+  // Practice scenarios
+  var TYPE_INFO = {
+    passive:    { label: "Passive",    base: "This avoids conflict, but your own need does not get heard." },
+    aggressive: { label: "Aggressive", base: "This gets your point across, but it can hurt the relationship." },
+    assertive:  { label: "Assertive",  base: "This says what you need, clearly and respectfully, for both people." }
+  };
+
+  var scenarios = [
+    {
+      icon: "i-plate",
+      situation: "Someone cuts in front of you in the canteen line, right when it is almost your turn.",
+      options: [
+        { type: "aggressive", text: "You say, “Hey, that is so rude, go to the back!”", note: "The other person may move, but the exchange turns tense fast." },
+        { type: "assertive",  text: "You say, “Excuse me, I was next, could you go to the back please?”", note: "Calm and direct usually works just as well, without the tension." },
+        { type: "passive",    text: "You say nothing and just let it go.", note: "You avoid the confrontation, but you are likely to feel annoyed for a while." }
+      ]
+    },
+    {
+      icon: "i-hand",
+      situation: "You do not understand something the teacher just explained, but everyone else seems to get it.",
+      options: [
+        { type: "passive",    text: "You stay quiet and hope you will figure it out later.", note: "You might stay confused about the topic for longer than you need to." },
+        { type: "assertive",  text: "You raise your hand and say, “Could you go over that part again? I want to make sure I understand it.”", note: "Most teachers are glad to explain again. Asking is not a weakness." },
+        { type: "aggressive", text: "You mutter that the teacher is bad at explaining things.", note: "Blaming the teacher does not actually get you the explanation you need." }
+      ]
+    },
+    {
+      icon: "i-bag",
+      situation: "A friend keeps borrowing your things and forgetting to give them back.",
+      options: [
+        { type: "assertive",  text: "You say, “I do not mind lending things, but could you make sure to return them? It has been a bit frustrating.”", note: "Naming the frustration calmly gives the friendship room to adjust." },
+        { type: "passive",    text: "You say nothing and just buy replacements yourself.", note: "The pattern is likely to continue if it is never named." },
+        { type: "aggressive", text: "You accuse them of never caring about your things.", note: "An accusation can make your friend defensive rather than more careful." }
+      ]
+    },
+    {
+      icon: "i-clipboard",
+      situation: "Your partner in a group project is not doing their share of the work.",
+      options: [
+        { type: "aggressive", text: "You tell the teacher they are lazy and useless.", note: "Going straight to blame can damage trust within the group." },
+        { type: "passive",    text: "You quietly do their part as well as your own.", note: "Carrying the extra work quietly often leads to resentment building up." },
+        { type: "assertive",  text: "You say, “I feel like I am carrying most of this project. Can we sit down and split the rest fairly?”", note: "A direct, calm conversation is more likely to lead to a fair split." }
+      ]
+    },
+    {
+      icon: "i-house",
+      situation: "A family member keeps commenting on what you eat or how you look.",
+      options: [
+        { type: "passive",    text: "You laugh it off, but it stings every time.", note: "Laughing it off does not stop the comments from affecting you." },
+        { type: "aggressive", text: "You shout that it is none of their business.", note: "Shouting can escalate a family moment that was already tender." },
+        { type: "assertive",  text: "You say, “I know you mean well, but comments like that do not help me. Can we talk about something else?”", note: "Naming how it affects you gives the other person a chance to change, without a blow up." }
+      ]
+    },
+    {
+      icon: "i-door",
+      situation: "A friend keeps pushing you to skip a class you do not want to miss.",
+      options: [
+        { type: "assertive",  text: "You say, “I would rather not skip today, but let us hang out after school instead.”", note: "Saying no to the plan while keeping the friendship open often works best." },
+        { type: "aggressive", text: "You tell them they are a bad influence and walk off.", note: "Calling a friend a bad influence can end the conversation, not the pressure." },
+        { type: "passive",    text: "You go along with it, even though you do not want to.", note: "Going along with it means doing something you did not actually want to do." }
+      ]
+    }
+  ];
+
+  var list = document.getElementById("scenario-list");
+
+  scenarios.forEach(function (scenario, i) {
+    var card = document.createElement("div");
+    card.className = "scenario-card";
+
+    var num = document.createElement("p");
+    num.className = "scenario-num";
+    num.appendChild(icon(scenario.icon, "scenario-emoji"));
+    num.appendChild(document.createTextNode("Situation " + (i + 1) + " of " + scenarios.length));
+    card.appendChild(num);
+
+    var situationP = document.createElement("p");
+    situationP.className = "scenario-situation";
+    situationP.textContent = scenario.situation;
+    card.appendChild(situationP);
+
+    var optionList = document.createElement("div");
+    optionList.className = "option-list";
+
+    var feedback = document.createElement("div");
+    feedback.className = "feedback";
+    feedback.setAttribute("aria-live", "polite");
+    feedback.hidden = true;
+
+    var feedbackLabel = document.createElement("p");
+    feedbackLabel.className = "feedback-label";
+    var feedbackText = document.createElement("p");
+    feedback.appendChild(feedbackLabel);
+    feedback.appendChild(feedbackText);
+
+    var optionButtons = [];
+
+    scenario.options.forEach(function (opt) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "option-btn";
+      btn.setAttribute("aria-pressed", "false");
+      btn.textContent = opt.text;
+      btn.addEventListener("click", function () {
+        optionButtons.forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
+        btn.setAttribute("aria-pressed", "true");
+        var info = TYPE_INFO[opt.type];
+        feedbackLabel.className = "feedback-label " + opt.type;
+        feedbackLabel.textContent = (opt.type === "assertive" ? "✓ " : (opt.type === "aggressive" ? "! " : "→ ")) + info.label;
+        feedbackText.textContent = info.base + " " + opt.note;
+        feedback.hidden = false;
+      });
+      optionButtons.push(btn);
+      optionList.appendChild(btn);
+    });
+
+    card.appendChild(optionList);
+    card.appendChild(feedback);
+    list.appendChild(card);
+  });
+})();
+</script>
+
+</body>
+</html>

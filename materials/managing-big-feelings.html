@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feelings Check-in Activity</title>
+<title>Managing Big Feelings</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Fredoka:wght@400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet">
@@ -90,120 +90,158 @@
   section { padding: 2.25rem 0; border-top: 1px solid var(--line); }
   section .intro { max-width: var(--prose); color: var(--ink-soft); margin-bottom: 1.5rem; }
 
-  /* Mascot cards */
-  .mascot-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
+  /* Cycle */
+  .cycle-toggle {
+    display: flex; flex-wrap: wrap; gap: 0.7rem;
+    margin-bottom: 1.5rem;
   }
-  @media (min-width: 640px) {
-    .mascot-grid { grid-template-columns: 1fr 1fr; }
+  .cycle-btn {
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: 999px;
+    padding: 0.65rem 1.1rem;
+    min-height: 44px;
+    font-weight: 600;
+    color: var(--ink);
   }
-  .mascot-card {
+  .cycle-btn[aria-pressed="true"] {
+    background: var(--teal-btn);
+    border-color: var(--teal-btn);
+    color: #fff;
+  }
+  .cycle-btn[aria-pressed="true"]::before { content: "\2713  "; }
+
+  .cycle-situation {
+    background: var(--cream-warm);
+    border-radius: 16px;
+    padding: 1.1rem 1.3rem;
+    margin-bottom: 1.25rem;
+    font-size: 1.05rem;
+  }
+  .cycle-situation strong { color: var(--teal-deep); }
+
+  .cycle-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .cycle-stage {
     background: var(--card);
     border: 1px solid var(--line);
-    border-radius: 20px;
-    padding: 1.5rem;
+    border-radius: 16px;
+    padding: 1.1rem;
     text-align: center;
+    flex: 1 1 180px;
+    min-width: 150px;
   }
-  .mascot-emoji {
-    width: 118px;
-    height: 118px;
-    margin: 0 auto;
-    border-radius: 50%;
-    background: var(--mint);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-  }
-  .mascot-card h3 { margin: 0.6rem 0 0.3rem 0; }
-  .mascot-card p { color: var(--ink-soft); font-size: 1.02rem; }
-
-  /* Body-cue illustration */
-  .body-cue-panel {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    align-items: center;
-    background: var(--mint);
-    border-radius: 20px;
-    padding: 1.5rem;
-  }
-  @media (min-width: 640px) {
-    .body-cue-panel { grid-template-columns: 140px 1fr; }
-  }
-  .body-cue-panel svg { width: 120px; height: 160px; display: block; margin: 0 auto; }
-  .body-cue-panel ul { margin: 0; padding-left: 1.2rem; color: var(--ink); }
-  .body-cue-panel li { margin-bottom: 0.5rem; }
-
-  /* Modelled example */
-  .model-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-  @media (min-width: 640px) {
-    .model-grid { grid-template-columns: 1fr 1fr; }
-  }
-  .model-card {
-    background: var(--cream-warm);
-    border-radius: 20px;
-    padding: 1.5rem;
-    text-align: center;
-  }
-  .model-card .face-wrap {
-    width: 110px; height: 110px; margin: 0 auto 0.75rem auto;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .model-card p.caption {
-    color: var(--ink);
-    text-align: left;
-    font-size: 1.02rem;
-  }
-  .size-tag {
-    display: inline-block;
+  .cycle-stage .emoji { width: 54px; height: 54px; margin: 0 auto 0.5rem; }
+  .cycle-stage h3 {
     font-family: "Fredoka", sans-serif;
-    font-weight: 600;
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--teal-deep);
-    background: var(--mint);
-    border-radius: 999px;
-    padding: 0.25rem 0.7rem;
-    margin-bottom: 0.6rem;
+    color: var(--tangerine-text);
+    margin-bottom: 0.4rem;
   }
-
-  /* Feeling controls */
-  .feeling-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-  @media (min-width: 560px) {
-    .feeling-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (min-width: 900px) {
-    .feeling-grid { grid-template-columns: 1fr 1fr 1fr; }
-  }
-  .feeling-card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 1.25rem;
-    text-align: center;
-  }
-  .feeling-card h3 { font-size: 1.15rem; margin-bottom: 0.6rem; }
-  .feeling-card .face-wrap {
-    width: 100px; height: 100px; margin: 0 auto 0.75rem auto;
-    transition: transform 0.15s ease;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .stepper {
+  .cycle-stage p { margin: 0; font-size: 1rem; color: var(--ink); }
+  .cycle-arrow {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.6rem;
+    color: var(--teal);
+    padding: 0 0.2rem;
+    flex: 0 0 auto;
+  }
+  @media (max-width: 700px) {
+    .cycle-row { flex-direction: column; }
+    .cycle-arrow { transform: rotate(90deg); padding: 0.1rem 0; }
+  }
+  .cycle-takeaway {
+    margin-top: 1.25rem;
+    padding: 1rem 1.2rem;
+    background: var(--mint);
+    border-radius: 12px;
+    font-size: 1rem;
+    color: var(--ink);
+  }
+
+  /* Thermometer */
+  .thermo-panel {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    background: var(--cream-warm);
+    border-radius: 20px;
+    padding: 1.5rem;
+  }
+  @media (min-width: 700px) {
+    .thermo-panel { grid-template-columns: 200px 1fr; align-items: center; }
+  }
+  .thermo-visual {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .thermo-bar-wrap {
+    width: 46px;
+    height: 200px;
+    border-radius: 23px;
+    background: var(--card);
+    border: 2px solid var(--line);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .thermo-fill {
+    width: 100%;
+    background: var(--teal-btn);
+    border-radius: 0 0 20px 20px;
+    transition: height 0.2s ease;
+  }
+  .thermo-emoji { width: 46px; height: 46px; flex: none; }
+
+  label.field-label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .feeling-name-input {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.7rem 0.9rem;
+    border-radius: 10px;
+    border: 2px solid var(--line);
+    background: var(--card);
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+  }
+
+  .thermo-scale-list {
+    list-style: none;
+    margin: 0 0 1.25rem 0;
+    padding: 0;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .thermo-scale-list li { margin-bottom: 0.3rem; }
+  .thermo-scale-list b { color: var(--ink); }
+
+  .thermo-live {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--teal-deep);
+    margin-bottom: 0.6rem;
+  }
+
+  .stepper {
+    display: flex;
+    align-items: center;
     gap: 0.75rem;
     margin-bottom: 0.6rem;
   }
@@ -227,13 +265,59 @@
   .size-label {
     font-family: "Fredoka", sans-serif;
     font-weight: 600;
-    min-width: 88px;
     color: var(--ink);
+    text-align: center;
   }
-  .feeling-live {
-    font-size: 0.95rem;
-    color: var(--ink-soft);
+
+  /* Opposite action cards */
+  .opposite-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
+  @media (min-width: 640px) {
+    .opposite-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .opposite-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 1.3rem;
+  }
+  .opposite-card .head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.7rem;
+  }
+  .opposite-card .head .emoji { width: 46px; height: 46px; flex: none; }
+  .opposite-card h3 { margin: 0; font-size: 1.15rem; }
+  .opposite-card .urge-label,
+  .opposite-card .action-label {
+    font-family: "Fredoka", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.78rem;
+    margin-bottom: 0.25rem;
+  }
+  .opposite-card .urge-label { color: var(--ink-faint); }
+  .opposite-card .action-label { color: var(--teal-deep); }
+  .opposite-card ul { margin: 0 0 0.8rem 0; padding-left: 1.2rem; color: var(--ink-soft); }
+  .opposite-card li { margin-bottom: 0.2rem; }
+  .reveal-btn {
+    background: transparent;
+    border: none;
+    color: var(--teal-deep);
+    font-weight: 600;
+    padding: 0.5rem 0.2rem;
+    min-height: 44px;
+  }
+  .reveal-btn::after { content: " +"; }
+  .reveal-btn[aria-expanded="true"]::after { content: " \2212"; }
+  .opposite-reveal { padding-top: 0.4rem; }
+  .opposite-reveal[hidden] { display: none; }
+  .opposite-reveal ul { color: var(--ink); }
 
   /* Reflection */
   .reflect-box {
@@ -264,20 +348,6 @@
     color: var(--ink-soft);
     font-size: 1rem;
   }
-
-  .remember-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  @media (min-width: 640px) { .remember-list { grid-template-columns: 1fr 1fr; } }
-  .remember-card {
-    background: var(--mint);
-    border-radius: 16px;
-    padding: 1.1rem 1.3rem;
-  }
-  .remember-card h3 { font-size: 1.05rem; margin-bottom: 0.3rem; }
-  .remember-card p { color: var(--ink); margin: 0; font-size: 1rem; }
 
   .citation {
     font-size: 0.95rem;
@@ -502,82 +572,75 @@
   <div class="wrap">
     <p class="eyebrow">An activity by Ngoc Bui</p>
     <span class="tick" aria-hidden="true"></span>
-    <h1>Feelings Come in All Sizes</h1>
-    <p class="lede">A feeling isn't just "good" or "bad", it has a size too. This activity helps you notice a feeling, put a word to it, and notice how big it is right now. It's built around self-awareness, one of the five core competencies in CASEL's framework for social and emotional learning.</p>
+    <h1>Managing Big Feelings</h1>
+    <p class="lede">A feeling does not come out of nowhere. This activity looks at how a situation, a thought, a feeling and an action are all connected, how to notice how big a feeling is, and how to choose your response even when a feeling is strong.</p>
   </div>
 </section>
 
-<section id="meet">
+<section id="cycle">
   <div class="wrap">
     <span class="tick" aria-hidden="true"></span>
-    <h2>Meet Mai and Bao</h2>
-    <p class="intro">Mai and Bao are going to help show how feelings work. Meet them first.</p>
-    <div class="mascot-grid">
-      <div class="mascot-card">
-        <div class="mascot-emoji"><svg class="icon-lg" role="img" aria-label="Mai, a small green bird"><use href="#i-mai"/></svg></div>
-        <h3>Mai</h3>
-        <p>Mai is a small, quick bird who loves finding out new things. When Mai has a big feeling, her feathers puff right up.</p>
+    <h2>How feelings work</h2>
+    <p class="intro">A situation leads to a thought. That thought leads to a feeling. That feeling leads to an action. The useful part is this: if the thought changes, the whole cycle can change too.</p>
+
+    <div class="cycle-situation">
+      <strong>Situation:</strong> You send a friend a message and it takes them a few hours to reply.
+    </div>
+
+    <div class="cycle-toggle" role="group" aria-label="Choose which version of the cycle to see">
+      <button class="cycle-btn" type="button" data-version="spiral" aria-pressed="true">See it spiral</button>
+      <button class="cycle-btn" type="button" data-version="settle" aria-pressed="false">See it settle</button>
+    </div>
+
+    <div class="cycle-row" id="cycle-row" aria-live="polite"></div>
+
+    <p class="cycle-takeaway" id="cycle-takeaway"></p>
+  </div>
+</section>
+
+<section id="thermometer">
+  <div class="wrap">
+    <span class="tick" aria-hidden="true"></span>
+    <h2>Rate the size</h2>
+    <p class="intro">Before you can manage a feeling, it helps to notice how big it actually is right now.</p>
+
+    <div class="thermo-panel">
+      <div class="thermo-visual">
+        <svg class="thermo-emoji" aria-hidden="true"><use href="#i-thermometer"/></svg>
+        <div class="thermo-bar-wrap" aria-hidden="true">
+          <div class="thermo-fill" id="thermo-fill" style="height: 50%;"></div>
+        </div>
       </div>
-      <div class="mascot-card">
-        <div class="mascot-emoji"><svg class="icon-lg" role="img" aria-label="Bao, a bear cub"><use href="#i-bao"/></svg></div>
-        <h3>Bao</h3>
-        <p>Bao is a gentle bear cub who takes his time. When Bao has a big feeling, he likes a cosy, quiet moment to work it out.</p>
+
+      <div>
+        <label class="field-label" for="feeling-name">Name your feeling (optional, just for you)</label>
+        <input type="text" id="feeling-name" class="feeling-name-input" placeholder="e.g. nervous, annoyed, excited...">
+
+        <ul class="thermo-scale-list">
+          <li><b>10</b>: the most I have ever felt this way</li>
+          <li><b>8</b>: this feeling is very big</li>
+          <li><b>5</b>: this feeling is medium</li>
+          <li><b>3</b>: this feeling is pretty small</li>
+          <li><b>1</b>: the least I have ever felt this way</li>
+        </ul>
+
+        <div class="stepper" style="justify-content: flex-start;">
+          <button class="step-btn" id="thermo-minus" type="button" aria-label="Make the rating smaller">−</button>
+          <span class="size-label" id="thermo-number" style="min-width: 50px; font-size:1.3rem;">5</span>
+          <button class="step-btn" id="thermo-plus" type="button" aria-label="Make the rating bigger">+</button>
+        </div>
+        <p class="thermo-live" id="thermo-live" aria-live="polite">That is a medium feeling.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="what-is">
+<section id="opposite">
   <div class="wrap">
     <span class="tick" aria-hidden="true"></span>
-    <h2>What is a feeling?</h2>
-    <p class="intro">A feeling is something you notice in your mind, and in your body too. There is no feeling that is wrong to have. It is what we do with a feeling that matters.</p>
-    <div class="body-cue-panel">
-      <svg viewBox="0 0 100 140" aria-hidden="true">
-        <circle cx="50" cy="22" r="16" fill="#FFFDFA" stroke="#1F6B57" stroke-width="3"/>
-        <path d="M50 38 L50 90" stroke="#1F6B57" stroke-width="3" stroke-linecap="round"/>
-        <path d="M50 50 L22 70 M50 50 L78 70" stroke="#1F6B57" stroke-width="3" stroke-linecap="round"/>
-        <path d="M50 90 L30 130 M50 90 L70 130" stroke="#1F6B57" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="50" cy="20" r="3" fill="#E8794A"/>
-        <circle cx="50" cy="56" r="5" fill="#E8794A" opacity="0.7"/>
-        <circle cx="50" cy="78" r="5" fill="#E8794A" opacity="0.7"/>
-      </svg>
-      <ul>
-        <li>Your head might feel busy, or full of fast thoughts.</li>
-        <li>Your chest might feel tight, or your heart might beat faster.</li>
-        <li>Your tummy might feel fluttery, or heavy.</li>
-        <li>Your hands might feel fidgety, or your shoulders might feel high up near your ears.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section id="model">
-  <div class="wrap">
-    <span class="tick" aria-hidden="true"></span>
-    <h2>See how it works</h2>
-    <p class="intro">Here is how Mai and Bao are feeling today.</p>
-    <div class="model-grid">
-      <div class="model-card">
-        <div class="face-wrap" id="model-face-mai"></div>
-        <p class="size-tag">Medium worried</p>
-        <p class="caption">Today Mai has a middle-sized worried feeling. She has a big test tomorrow and keeps thinking about it. It's not the most worried she has ever felt, so it's not her biggest worried feeling either.</p>
-      </div>
-      <div class="model-card">
-        <div class="face-wrap" id="model-face-bao"></div>
-        <p class="size-tag">Big happy</p>
-        <p class="caption">Today Bao has a big happy feeling. His best friend came to visit and they played together all afternoon. That is about as happy as Bao gets.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="practice">
-  <div class="wrap">
-    <span class="tick" aria-hidden="true"></span>
-    <h2>Now it's your turn</h2>
-    <p class="intro">How are you feeling right now? For each feeling, use the buttons to show how big it is. This is just for you to notice. Nothing here is saved, sent anywhere or seen by anyone else.</p>
-    <div class="feeling-grid" id="feeling-grid"></div>
+    <h2>Choosing your response: acting opposite</h2>
+    <p class="intro">When a feeling is big, it comes with an urge, a pull towards a certain kind of action. One option is to act opposite to that urge instead. It will not always feel natural, but it can help the feeling come down and stop things getting worse. This idea comes from Dialectical Behaviour Therapy (DBT).</p>
+    <div class="opposite-grid" id="opposite-grid"></div>
   </div>
 </section>
 
@@ -587,38 +650,13 @@
     <h2>Think a little more</h2>
     <div class="reflect-box">
       <p class="intro" style="margin-bottom:0.8rem;">A question to sit with, on your own or with a partner.</p>
-      <p style="font-weight:600; margin-bottom:0;">What is one thing that has helped you handle a big feeling before, like taking a breath, moving your body, or talking to someone?</p>
+      <p style="font-weight:600; margin-bottom:0;">Think of a recent moment when a strong feeling almost made you do something big. What might acting opposite have looked like in that moment?</p>
       <label for="think-box" class="sr-only">Write your thoughts</label>
       <textarea id="think-box" placeholder="Write here if it helps you think it through..."></textarea>
-      <p class="privacy-note">Nothing you type here is saved, sent anywhere or seen by anyone else. It disappears when you leave the page.</p>
-    </div>
-  </div>
-</section>
-
-<section id="remember">
-  <div class="wrap">
-    <span class="tick" aria-hidden="true"></span>
-    <h2>A few things to remember</h2>
-    <div class="remember-list">
-      <div class="remember-card">
-        <h3>Every feeling is okay</h3>
-        <p>There is no feeling that is wrong to have. Feelings just tell us something.</p>
-      </div>
-      <div class="remember-card">
-        <h3>Feelings change size</h3>
-        <p>A feeling that is big right now will not always stay that big.</p>
-      </div>
-      <div class="remember-card">
-        <h3>You can have more than one</h3>
-        <p>You can feel two things at once, like excited and nervous together.</p>
-      </div>
-      <div class="remember-card">
-        <h3>Naming it helps</h3>
-        <p>Saying what you feel helps you, and helps the people who want to support you.</p>
-      </div>
+      <p class="privacy-note">Nothing you type on this page is saved, sent anywhere or seen by anyone else. It disappears when you leave the page.</p>
     </div>
     <p class="calm-note">If a feeling ever feels like more than you can handle on your own, it is okay to talk to a trusted adult: a teacher, a school counsellor, or someone in your family you trust.</p>
-    <p class="citation" style="margin-top:1.2rem;">This activity is inspired by ideas from CASEL's framework for social and emotional learning, in particular the self-awareness competency. Read more at <a href="https://casel.org" target="_blank" rel="noopener">casel.org</a>.</p>
+    <p class="citation" style="margin-top:1.2rem;">This activity draws on ideas from Cognitive Behavioural Therapy (CBT) and the opposite action skill from Dialectical Behaviour Therapy (DBT), an approach developed by psychologist Marsha Linehan.</p>
   </div>
 </section>
 
@@ -633,108 +671,214 @@
 (function () {
   "use strict";
 
-  // ---- Face emoji -------------------------------------------------
-  var FACE_ICON = {
-    happy:   "i-happy",
-    sad:     "i-sad",
-    mad:     "i-mad",
-    worried: "i-worried"
+  // builds one of the drawn icons from the set at the top of the page
+  function icon(id, cls) {
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("class", cls || "icon");
+    svg.setAttribute("aria-hidden", "true");
+    var use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+    use.setAttribute("href", "#" + id);
+    svg.appendChild(use);
+    return svg;
+  }
+
+  // ---- CBT cycle ---------------------------------------------------
+  var CYCLE_DATA = {
+    spiral: {
+      thought: "“They must be annoyed with me, I must have said something wrong.”",
+      feeling: "Anxious, and a bit sick in the stomach.",
+      behaviour: "You reread the whole chat, and do not send anything else.",
+      takeaway: "Notice how one thought pulled the feeling and the action along with it, even though nothing has actually gone wrong yet."
+    },
+    settle: {
+      thought: "“They are probably just busy, I will hear back later.”",
+      feeling: "Fairly calm, maybe a little unsure.",
+      behaviour: "You put your phone down and get on with something else.",
+      takeaway: "Same situation, different thought. The feeling and the action that followed were completely different."
+    }
   };
 
-  function setFace(el, feeling) {
-    var id = FACE_ICON[feeling] || FACE_ICON.happy;
-    el.innerHTML = '<svg class="icon-lg" role="img" aria-label="' + feeling +
-                   ' face"><use href="#' + id + '"/></svg>';
+  var cycleRow = document.getElementById("cycle-row");
+  var cycleTakeaway = document.getElementById("cycle-takeaway");
+  var cycleButtons = document.querySelectorAll(".cycle-btn");
+
+  function renderCycle(version) {
+    var d = CYCLE_DATA[version];
+    cycleRow.innerHTML = "";
+
+    var stages = [
+      { icon: "i-pin", label: "Situation", text: "A friend takes hours to reply to your message." },
+      { icon: "i-thought", label: "Thought", text: d.thought },
+      { icon: "i-heart", label: "Feeling", text: d.feeling },
+      { icon: "i-footprint", label: "Behaviour", text: d.behaviour }
+    ];
+
+    stages.forEach(function (s, i) {
+      var card = document.createElement("div");
+      card.className = "cycle-stage";
+      var emoji = icon(s.icon, "emoji");
+      var h3 = document.createElement("h3");
+      h3.textContent = s.label;
+      var p = document.createElement("p");
+      p.textContent = s.text;
+      card.appendChild(emoji);
+      card.appendChild(h3);
+      card.appendChild(p);
+      cycleRow.appendChild(card);
+
+      if (i < stages.length - 1) {
+        var arrow = document.createElement("div");
+        arrow.className = "cycle-arrow";
+        arrow.setAttribute("aria-hidden", "true");
+        arrow.textContent = "→";
+        cycleRow.appendChild(arrow);
+      }
+    });
+
+    cycleTakeaway.textContent = d.takeaway;
+
+    cycleButtons.forEach(function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-version") === version ? "true" : "false");
+    });
   }
 
-  var SIZE_LABELS = { 1: "Small", 2: "Medium", 3: "Big" };
-  var SIZE_SCALE = { 1: 0.72, 2: 0.87, 3: 1.0 };
+  cycleButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      renderCycle(btn.getAttribute("data-version"));
+    });
+  });
 
-  // ---- Modelled examples ----------------------------------------------
-  setFace(document.getElementById("model-face-mai"), "worried");
-  setFace(document.getElementById("model-face-bao"), "happy");
+  renderCycle("spiral");
 
-  // ---- Interactive feeling controls ------------------------------------
-  var FEELINGS = [
-    { key: "happy", label: "Happy" },
-    { key: "sad", label: "Sad" },
-    { key: "mad", label: "Mad" },
-    { key: "worried", label: "Worried" }
+  // ---- Feelings thermometer ------------------------------------------
+  var thermoFill = document.getElementById("thermo-fill");
+  var thermoNumber = document.getElementById("thermo-number");
+  var thermoLive = document.getElementById("thermo-live");
+  var thermoMinus = document.getElementById("thermo-minus");
+  var thermoPlus = document.getElementById("thermo-plus");
+  var thermoValue = 5;
+
+  function thermoDescription(v) {
+    if (v >= 10) return "the most you have ever felt this way";
+    if (v >= 8) return "a very big feeling";
+    if (v >= 6) return "a fairly big feeling";
+    if (v >= 5) return "a medium feeling";
+    if (v >= 3) return "a pretty small feeling";
+    if (v >= 2) return "a small feeling";
+    return "the least you have ever felt this way";
+  }
+
+  function renderThermo() {
+    thermoNumber.textContent = String(thermoValue);
+    thermoFill.style.height = (thermoValue * 10) + "%";
+    thermoLive.textContent = "That is " + thermoDescription(thermoValue) + ", " + thermoValue + " out of 10.";
+    thermoMinus.disabled = thermoValue <= 1;
+    thermoPlus.disabled = thermoValue >= 10;
+  }
+
+  thermoMinus.addEventListener("click", function () {
+    if (thermoValue > 1) { thermoValue -= 1; renderThermo(); }
+  });
+  thermoPlus.addEventListener("click", function () {
+    if (thermoValue < 10) { thermoValue += 1; renderThermo(); }
+  });
+
+  renderThermo();
+
+  // ---- Acting opposite -------------------------------------------------
+  var OPPOSITE_DATA = [
+    {
+      icon: "i-mad",
+      label: "Anger",
+      urges: ["Snap back at someone", "Slam your things down", "Say something you will probably regret"],
+      actions: ["Keep your voice level, even if it is hard", "Step outside or away for a minute", "Come back to it once you feel calmer"]
+    },
+    {
+      icon: "i-worried",
+      label: "Anxiety",
+      urges: ["Avoid the situation completely", "Cancel at the last minute", "Make an excuse to get out of it"],
+      actions: ["Take one small step towards it anyway", "Tell someone what you are anxious about", "Do it imperfectly rather than not at all"]
+    },
+    {
+      icon: "i-sad",
+      label: "Sadness",
+      urges: ["Shut your door and avoid everyone", "Stay off your phone completely", "Skip things you would normally enjoy"],
+      actions: ["Do one small active thing, even a short walk", "Message one person back", "Let yourself do something you usually enjoy, even briefly"]
+    },
+    {
+      icon: "i-frustrated",
+      label: "Frustration",
+      urges: ["Give up on the task", "Throw your pen down", "Decide you are just bad at it"],
+      actions: ["Take a short break, then come back to it", "Break the task into one smaller step", "Ask someone for help"]
+    }
   ];
 
-  var grid = document.getElementById("feeling-grid");
+  var oppositeGrid = document.getElementById("opposite-grid");
 
-  function buildFeelingCard(item) {
+  OPPOSITE_DATA.forEach(function (item, index) {
     var card = document.createElement("div");
-    card.className = "feeling-card";
-    card.setAttribute("data-feeling-key", item.key);
+    card.className = "opposite-card";
 
+    var head = document.createElement("div");
+    head.className = "head";
+    var emoji = icon(item.icon, "emoji");
     var h3 = document.createElement("h3");
     h3.textContent = item.label;
-    card.appendChild(h3);
+    head.appendChild(emoji);
+    head.appendChild(h3);
+    card.appendChild(head);
 
-    var faceWrap = document.createElement("div");
-    faceWrap.className = "face-wrap";
-    setFace(faceWrap, item.key);
-    card.appendChild(faceWrap);
+    var urgeLabel = document.createElement("p");
+    urgeLabel.className = "urge-label";
+    urgeLabel.textContent = "The urge might be to";
+    card.appendChild(urgeLabel);
 
-    var stepper = document.createElement("div");
-    stepper.className = "stepper";
-
-    var minusBtn = document.createElement("button");
-    minusBtn.type = "button";
-    minusBtn.className = "step-btn";
-    minusBtn.setAttribute("aria-label", "Make the " + item.label.toLowerCase() + " feeling smaller");
-    minusBtn.textContent = "−";
-
-    var sizeLabel = document.createElement("span");
-    sizeLabel.className = "size-label";
-
-    var plusBtn = document.createElement("button");
-    plusBtn.type = "button";
-    plusBtn.className = "step-btn";
-    plusBtn.setAttribute("aria-label", "Make the " + item.label.toLowerCase() + " feeling bigger");
-    plusBtn.textContent = "+";
-
-    stepper.appendChild(minusBtn);
-    stepper.appendChild(sizeLabel);
-    stepper.appendChild(plusBtn);
-    card.appendChild(stepper);
-
-    var live = document.createElement("p");
-    live.className = "feeling-live";
-    live.setAttribute("aria-live", "polite");
-    card.appendChild(live);
-
-    var size = 2;
-
-    function render() {
-      sizeLabel.textContent = SIZE_LABELS[size];
-      faceWrap.style.transform = "scale(" + SIZE_SCALE[size] + ")";
-      live.textContent = "That is a " + SIZE_LABELS[size].toLowerCase() + " " + item.label.toLowerCase() + " feeling.";
-      minusBtn.disabled = size <= 1;
-      plusBtn.disabled = size >= 3;
-    }
-
-    minusBtn.addEventListener("click", function () {
-      if (size > 1) { size -= 1; render(); }
+    var urgeList = document.createElement("ul");
+    item.urges.forEach(function (u) {
+      var li = document.createElement("li");
+      li.textContent = u;
+      urgeList.appendChild(li);
     });
-    plusBtn.addEventListener("click", function () {
-      if (size < 3) { size += 1; render(); }
+    card.appendChild(urgeList);
+
+    var revealId = "opposite-reveal-" + index;
+    var revealBtn = document.createElement("button");
+    revealBtn.type = "button";
+    revealBtn.className = "reveal-btn";
+    revealBtn.setAttribute("aria-expanded", "false");
+    revealBtn.setAttribute("aria-controls", revealId);
+    revealBtn.textContent = "See the opposite action";
+    card.appendChild(revealBtn);
+
+    var revealDiv = document.createElement("div");
+    revealDiv.className = "opposite-reveal";
+    revealDiv.id = revealId;
+    revealDiv.hidden = true;
+
+    var actionLabel = document.createElement("p");
+    actionLabel.className = "action-label";
+    actionLabel.textContent = "Acting opposite could look like";
+    revealDiv.appendChild(actionLabel);
+
+    var actionList = document.createElement("ul");
+    item.actions.forEach(function (a) {
+      var li = document.createElement("li");
+      li.textContent = a;
+      actionList.appendChild(li);
+    });
+    revealDiv.appendChild(actionList);
+
+    card.appendChild(revealDiv);
+
+    revealBtn.addEventListener("click", function () {
+      var expanded = revealBtn.getAttribute("aria-expanded") === "true";
+      revealBtn.setAttribute("aria-expanded", String(!expanded));
+      revealBtn.textContent = expanded ? "See the opposite action" : "Hide the opposite action";
+      revealDiv.hidden = expanded;
     });
 
-    render();
-    return card;
-  }
-
-  function renderFeelingGrid() {
-    grid.innerHTML = "";
-    FEELINGS.forEach(function (item) {
-      grid.appendChild(buildFeelingCard(item));
-    });
-  }
-
-  renderFeelingGrid();
+    oppositeGrid.appendChild(card);
+  });
 })();
 </script>
 
