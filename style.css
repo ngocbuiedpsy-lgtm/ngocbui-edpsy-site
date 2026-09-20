@@ -118,10 +118,13 @@ nav a:hover, nav a.active { color: var(--teal-deep); border-bottom-color: var(--
 .hero-grid {
   display: grid; gap: clamp(2rem, 5vw, 3.5rem);
   grid-template-columns: 1fr;
-  align-items: center;
+  /* start, not center: centring measures the WHOLE left column, which also
+     holds the squiggle and the "I teach..." line, so the picture sank about
+     47px below the first line of the heading. */
+  align-items: start;
 }
 @media (min-width: 800px) {
-  .hero-grid { grid-template-columns: 1.25fr .75fr; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, .95fr); }
 }
 .hero h1 {
   font-size: clamp(1.9rem, 4.4vw, 3.1rem);
@@ -140,10 +143,19 @@ nav a:hover, nav a.active { color: var(--teal-deep); border-bottom-color: var(--
   color: var(--tangerine);
 }
 
-/* teardrop photo, echoes the old Lum site */
-.portrait { justify-self: center; width: min(300px, 78vw); }
+/* ---- leaf photo ---------------------------------------------------------
+   A plain <img> with a border-radius, not an SVG clipPath. The radii are in
+   per cent, not pixels, so the leaf keeps exactly the same shape whether the
+   frame is 500px wide on a laptop or 320px wide on a phone. ---------------- */
+.portrait { justify-self: center; width: min(500px, 100%, 82vw); }
 .portrait figure { margin: 0; position: relative; }
-.portrait svg { width: 100%; height: auto; display: block; }
+.portrait img {
+  width: 100%; aspect-ratio: 1 / 1; display: block;
+  object-fit: cover; object-position: center top;
+  border: 8px solid var(--teal);
+  border-radius: 50% 8% 50% 8%;
+  background: #fff;
+}
 .portrait figcaption {
   text-align: center; font-size: .9rem; color: var(--ink-faint); margin-top: .85rem;
 }
@@ -605,6 +617,24 @@ body:has(#editBar) { padding-bottom: 5.5rem; }
   .talk.has-img { grid-template-columns: 1fr minmax(0, 22rem); align-items: center; }
 }
 
+/* ---- one frame for every talk photo ------------------------------------
+   Same width AND same height for all three. Each picture fills its frame and
+   whatever does not fit is trimmed, so the photos can be any shape at all and
+   the row still lines up. 4 by 3 is the shape that costs the least: the
+   Vinschool classroom photo is already 4 by 3, so nothing is cut there, and
+   the square Youth Forum poster keeps its lettering.
+   This holds at every screen width, so a phone sees the same framing.
+   Swap in a photo of any shape later and it will still fit. */
+.talk img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+@media (min-width: 1100px) {
+  .talk.has-img { grid-template-columns: 1fr minmax(0, 35rem); }
+}
+
 /* ---- rhythm ------------------------------------------------------------ */
 section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
 .hero h1 { max-width: 20ch; }
@@ -914,7 +944,10 @@ footer { border-top: none; padding-top: 3rem; }
   align-items: start;
 }
 @media (min-width: 840px) {
-  .material { grid-template-columns: 1fr minmax(0, 26rem); }
+  .material { grid-template-columns: minmax(0, 1fr) minmax(0, 30rem); }
+}
+@media (min-width: 1100px) {
+  .material { grid-template-columns: minmax(0, 1fr) minmax(0, 38rem); }
 }
 
 .mat-who {
@@ -932,27 +965,39 @@ footer { border-top: none; padding-top: 3rem; }
 
 .mat-shot img {
   width: 100%;
+  /* a portrait page would otherwise tower over a landscape screenshot */
+  max-height: 34rem;
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
+  display: block;
   border-radius: 12px;
   border: 1px solid var(--line);
   box-shadow: 0 8px 26px rgba(51,48,63,.14);
 }
 
-/* ---- the sample pages, as a strip ---------------------------------------- */
+/* ---- the sample pages, as one scrolling strip ---------------------------- */
 .mat-pages {
   grid-column: 1 / -1;
   display: flex;
-  flex-wrap: wrap;
-  gap: .6rem;
-  margin-top: .4rem;
+  flex-wrap: nowrap;
+  gap: .5rem;
+  margin-top: .2rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: .25rem;
 }
+.mat-pages::-webkit-scrollbar { display: none; }
 .mat-page {
   display: block;
+  flex: none;
   line-height: 0;
   border-radius: 6px;
   outline-offset: 3px;
 }
 .mat-page img {
-  width: 84px;
+  width: 62px;
   border: 1px solid var(--line);
   border-radius: 6px;
   background: #fff;
@@ -963,4 +1008,19 @@ footer { border-top: none; padding-top: 3rem; }
   transform: translateY(-3px);
   box-shadow: 0 8px 18px rgba(51,48,63,.18);
 }
-@media (max-width: 620px) { .mat-page img { width: 68px; } }
+@media (max-width: 620px) { .mat-page img { width: 54px; } }
+
+/* ---- the carousel takes the height of the slide you are looking at -------
+   main.js sets this height. Without it the track is as tall as its tallest
+   slide and every shorter one trails a wedge of empty band. -------------- */
+.materials, .quotes { transition: height .25s ease; }
+@media (prefers-reduced-motion: reduce) { .materials, .quotes { transition: none; } }
+
+/* and the arrows sit closer to the words */
+.carousel-nav { margin-top: 1.1rem; }
+
+/* ---- and nothing scrolls vertically inside the track --------------------
+   "overflow-x: auto" quietly makes the vertical axis scrollable too, so the
+   flex row stayed as tall as its tallest slide underneath and you could drag
+   the shorter ones up into that empty band. -------------------------------- */
+.materials, .quotes { overflow-y: hidden; }

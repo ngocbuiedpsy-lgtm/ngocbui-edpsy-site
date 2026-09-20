@@ -105,6 +105,16 @@
     }
     function lastStart() { return Math.max(0, slides.length - perView()); }
 
+    // The track is a flex row, so its height is the height of the TALLEST
+    // slide. On a short slide that leaves a wedge of empty band and pushes the
+    // arrows far below the words. So the track is told to take the height of
+    // whichever slide is on screen.
+    function fit() {
+      if (perView() > 1) { track.style.height = ""; return; }
+      var s = slides[current];
+      if (s) track.style.height = Math.ceil(s.scrollHeight) + "px";
+    }
+
     function go(i) {
       current = Math.max(0, Math.min(lastStart(), i));
       track.scrollTo({ left: slides[current].offsetLeft - track.offsetLeft,
@@ -123,6 +133,7 @@
       nav.querySelector('[data-dir="1"]').disabled = current >= last;
       // with everything already on screen there is nothing to page through
       nav.hidden = last === 0;
+      fit();
     }
 
     nav.addEventListener("click", function (e) {
@@ -162,6 +173,11 @@
     });
 
     mark();
+
+    Array.prototype.forEach.call(track.querySelectorAll("img"), function (img) {
+      if (!img.complete) img.addEventListener("load", fit, { once: true });
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
   }
 
   // --- meta ---------------------------------------------------------------
@@ -230,8 +246,13 @@
     text("talksTitle", K.title, "talks.title");
     text("talksIntro", K.intro, "talks.intro");
     html("talksList", list(K.items).map(function (t, i) {
+      // Not lazy. These three photos are now given one common height with
+      // "width: auto", and a lazy image that has not loaded has no known
+      // shape, so the browser works its width out as zero and the row
+      // collapses until you scroll to it. Three photos, about 390KB.
       var img = t.image
-        ? '<img src="' + esc(t.image) + '" alt="' + esc(t.imageAlt || "") + '" loading="lazy">'
+        ? '<img src="' + esc(t.image) + '" alt="' + esc(t.imageAlt || "") +
+          '" decoding="async">'
         : "";
       var dl = t.download
         ? '<a class="btn" href="' + esc(t.download) + '" download>' + DL_ICON +
@@ -268,9 +289,12 @@
     html("matList", list(M.items || M.projects).map(function (m, i) {
       var b = MK + (M.items ? ".items." : ".projects.") + i + ".";
 
+      // Not lazy: a slide sitting off to the side never counts as "near the
+      // viewport", so a lazy picture there never loads and the slide measures
+      // as 2px tall until you reach it. Four small pictures, about 100KB.
       var pic = m.image
         ? '<div class="mat-shot"><img src="' + esc(m.image) + '" alt="' +
-          esc(m.imageAlt || "") + '" loading="lazy"></div>'
+          esc(m.imageAlt || "") + '" decoding="async"></div>'
         : "";
 
       var action = "";

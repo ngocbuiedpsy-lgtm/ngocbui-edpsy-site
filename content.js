@@ -152,30 +152,6 @@ const CONTENT = {
 
     items: [
       {
-        title: "Including students with autism in the primary classroom",
-        audience: "A guide for teachers",
-        body:
-          "A twenty-eight page booklet for primary teachers, written in 2019 during my Master of Education at UNSW. It covers what the research says about autism in the classroom, four evidence-based practices with the steps to run each, and practical strategies: visual cues, schedules, calm corners, and how to help friendships along. Referenced throughout.",
-        why:
-          "Why I built it this way: what a class teacher can find is usually either a short leaflet or a literature review. I wanted the thing in between, short enough to read in an evening and specific enough to use the next morning.",
-        image: "images/material-booklet.webp",
-        imageAlt: "The cover of the booklet, Including students with Autism Spectrum Disorder in the primary classroom",
-        download: "files/Ngoc-Bui-autism-booklet-sample.pdf",
-        downloadLabel: "Read the sample (PDF, 10 pages, 2MB)",
-        note: "Nine pages here as a sample. Write to me for the full booklet.",
-        pages: [
-          { image: "images/booklet-p1.webp", alt: "Cover page" },
-          { image: "images/booklet-p2.webp", alt: "Page 3, general information about autism" },
-          { image: "images/booklet-p3.webp", alt: "Page 8, the phases of PECS and social stories" },
-          { image: "images/booklet-p4.webp", alt: "Page 9, writing a social story, step by step" },
-          { image: "images/booklet-p5.webp", alt: "Page 12, visual task cards and a social story example" },
-          { image: "images/booklet-p6.webp", alt: "Page 15, the Premack principle and a first-then board" },
-          { image: "images/booklet-p7.webp", alt: "Page 18, keeping the classroom calm, with a calm zone" },
-          { image: "images/booklet-p8.webp", alt: "Page 19, classroom schedules, rules and language" },
-          { image: "images/booklet-p9.webp", alt: "Page 21, the setup principle and fostering friendships" },
-        ],
-      },
-      {
         title: "Feelings Come in All Sizes",
         audience: "For primary school students",
         body:
@@ -210,6 +186,19 @@ const CONTENT = {
         imageAlt: "The cycle from situation to thought to feeling to behaviour, shown in four steps",
         url: "materials/managing-big-feelings.html",
         linkLabel: "Try it",
+      },
+      {
+        title: "Including students with autism in the primary classroom",
+        audience: "A guide for teachers",
+        body:
+          "A twenty-eight page booklet for primary teachers, written in 2019 during my Master of Education at UNSW. It covers what the research says about autism in the classroom, four evidence-based practices with the steps to run each, and practical strategies: visual cues, schedules, calm corners, and how to help friendships along. Referenced throughout.",
+        why:
+          "Why I built it this way: what a class teacher can find is usually either a short leaflet or a literature review. I wanted the thing in between, short enough to read in an evening and specific enough to use the next morning.",
+        image: "images/material-booklet.webp",
+        imageAlt: "The cover of the booklet, Including students with Autism Spectrum Disorder in the primary classroom",
+        download: "files/Ngoc-Bui-autism-booklet-sample.pdf",
+        downloadLabel: "Read the sample (PDF, 10 pages, 2MB)",
+        note: "Nine pages here as a sample. Write to me for the full booklet.",
       },
     ],
   },
