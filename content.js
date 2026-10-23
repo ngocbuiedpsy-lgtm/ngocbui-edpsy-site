@@ -301,7 +301,10 @@ const CONTENT = {
           "IELTS 8.0 · Cambridge Advanced C2",
         ],
       },
-   
+   ],
+    cvLabel: "Download my CV (PDF)",
+    cvFile: "files/Ngoc-Bui-CV.pdf",
+  },
   /* ---- Contact --------------------------------------------------------- */
   contact: {
     title: "Get in touch",
