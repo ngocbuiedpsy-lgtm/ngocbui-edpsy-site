@@ -233,7 +233,7 @@ const CONTENT = {
       {
         title:
           "Unveiling Challenges and Contributions of Overseas Alumni in Education: Tales of Vietnamese Returnees from Australia",
-        body: "Contributing author. Routledge Critical Studies in Asian Education. Forthcoming, December 2026.",
+        body: "Contributing author. Routledge Critical Studies in Asian Education. Forthcoming, late 2026/early 2027.",
       },
     ],
     orcid: "https://orcid.org/0000-0002-3556-4952",
